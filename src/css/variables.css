@@ -1,0 +1,106 @@
+:root {
+  /* Colors - Based on Figma design */
+  --color-dark: #242424;
+  --color-light: #f4f4f4;
+  --color-white: #fff;
+  --color-black: #242424;
+  --color-gray-60: rgb(36, 36, 36, 0.6);
+  --color-light-60: rgb(244, 244, 244, 0.6);
+  --color-light-40: rgb(244, 244, 244, 0.4);
+  --color-gray-border: #d4d4d4;
+  --color-footer-text: #c6cdd1;
+  --color-icon: #4e4e4e;
+
+  /* Typography */
+  --font-main: 'DM Sans', sans-serif;
+  --font-display: 'Neue Montreal', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* Font Sizes */
+  --fs-12: 12px;
+  --fs-14: 14px;
+  --fs-16: 16px;
+  --fs-18: 18px;
+  --fs-24: 24px;
+  --fs-44: 44px;
+  --fs-56: 56px;
+  --fs-74: 74px;
+
+  /* Line Heights */
+  --lh-18: 18px;
+  --lh-24: 24px;
+  --lh-48: 48px;
+  --lh-60: 60px;
+  --lh-74: 74px;
+
+  /* Spacing */
+  --gap-4: 4px;
+  --gap-6: 6px;
+  --gap-8: 8px;
+  --gap-12: 12px;
+  --gap-15: 15px;
+  --gap-16: 16px;
+  --gap-20: 20px;
+  --gap-32: 32px;
+
+  /* Border Radius */
+  --radius-10: 10px;
+  --radius-20: 20px;
+  --radius-60: 60px;
+
+  /* Transitions */
+  --transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body {
+  background-color: var(--color-light);
+  color: var(--color-black);
+  font-family: var(--font-main);
+  margin: 0;
+  font-size: var(--fs-16);
+}
+
+/* Button Styles - Reusable classes */
+.btn {
+  padding: 14px 32px;
+  border-radius: 30px;
+  font-weight: 400;
+  font-size: var(--fs-16);
+  transition: var(--transition);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.btn-primary {
+  background: var(--color-light);
+  color: var(--color-dark);
+  border: none;
+}
+
+.btn-primary:hover {
+  opacity: 0.9;
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--color-light);
+  border: 1px solid var(--color-light);
+}
+
+.btn-outline:hover {
+  background: var(--color-light);
+  color: var(--color-dark);
+}
+
+.btn-dark-outline {
+  background: transparent;
+  color: var(--color-dark);
+  border: 1px solid var(--color-dark);
+}
+
+.btn-dark-outline:hover {
+  background: var(--color-dark);
+  color: var(--color-light);
+}

@@ -1,0 +1,134 @@
+/* Hero Styles */
+.hero-wrapper {
+  margin-top: 64px;
+}
+
+.hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 40px;
+  margin-bottom: 32px;
+}
+
+.hero-content {
+  flex: 1;
+  max-width: 685px;
+}
+
+.hero-title-wrapper {
+  display: block;
+  margin-bottom: 20px;
+}
+
+.hero-star-icon {
+  float: left;
+  margin-top: 6px;
+  flex-shrink: 0;
+}
+
+.hero-title {
+  font-family: var(--font-display);
+  font-size: var(--fs-74);
+  font-weight: 400;
+  line-height: var(--lh-74);
+  letter-spacing: -1.48px;
+  color: var(--color-black);
+  margin: 0;
+}
+
+.accent-text {
+  font-style: italic;
+}
+
+.hero-description {
+  font-size: var(--fs-18);
+  line-height: var(--lh-24);
+  letter-spacing: -0.36px;
+  color: var(--color-black);
+  max-width: 530px;
+  margin: 0;
+}
+
+.hero-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 24px;
+}
+
+.hero-img-small {
+  width: 168px;
+  height: 100px;
+  border-radius: var(--radius-20);
+  object-fit: cover;
+}
+
+.hero-tags {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.hero-tag-line {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+.tag {
+  padding: 4px 16px;
+  border: 1px solid var(--color-black);
+  border-radius: 30px;
+  font-size: var(--fs-16);
+  font-weight: 400;
+  line-height: var(--lh-24);
+}
+
+.hero-image-wrapper {
+  width: 100%;
+  max-width: 1376px;
+  height: 350px;
+  border-radius: 60px;
+  overflow: hidden;
+  position: relative;
+  background: #fff;
+  margin: 0 auto;
+}
+
+.hero-img-large {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 26%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* Responsive */
+@media (width <= 1279px) {
+  .hero-right {
+    display: none;
+  }
+}
+
+@media (width <= 768px) {
+  .hero {
+    flex-direction: column;
+  }
+
+  .hero-title {
+    font-size: 48px;
+    line-height: 52px;
+  }
+
+  .hero-image-wrapper {
+    height: 600px;
+    border-radius: 30px;
+  }
+
+  .hero-img-large {
+    object-position: 50% 50%;
+  }
+}

@@ -1,0 +1,53 @@
+<div class="modal-overlay" id="rating-modal" role="dialog" aria-modal="true" aria-labelledby="rating-modal-title" aria-hidden="true">
+  <div class="modal-content rating-modal">
+    <button class="modal-close" id="rating-modal-close-btn" aria-label="Close rating modal">
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+        <path d="M21 7L7 21M7 7L21 21" stroke="#F4F4F4" stroke-width="2" stroke-linecap="round" />
+      </svg>
+    </button>
+
+    <div class="rating-modal-content">
+      <h3 class="rating-modal-title" id="rating-modal-title">Rate this exercise</h3>
+
+      <div class="rating-stars-form" id="rating-stars" role="radiogroup" aria-label="Rating stars">
+        <span class="rating-star" data-rating="0.5" role="radio" aria-checked="false" aria-label="0.5 stars" tabindex="0">☆</span>
+        <span class="rating-star" data-rating="1" role="radio" aria-checked="false" aria-label="1 star" tabindex="0">☆</span>
+        <span class="rating-star" data-rating="1.5" role="radio" aria-checked="false" aria-label="1.5 stars" tabindex="0">☆</span>
+        <span class="rating-star" data-rating="2" role="radio" aria-checked="false" aria-label="2 stars" tabindex="0">☆</span>
+        <span class="rating-star" data-rating="2.5" role="radio" aria-checked="false" aria-label="2.5 stars" tabindex="0">☆</span>
+        <span class="rating-star" data-rating="3" role="radio" aria-checked="false" aria-label="3 stars" tabindex="0">☆</span>
+        <span class="rating-star" data-rating="3.5" role="radio" aria-checked="false" aria-label="3.5 stars" tabindex="0">☆</span>
+        <span class="rating-star" data-rating="4" role="radio" aria-checked="false" aria-label="4 stars" tabindex="0">☆</span>
+        <span class="rating-star" data-rating="4.5" role="radio" aria-checked="false" aria-label="4.5 stars" tabindex="0">☆</span>
+        <span class="rating-star" data-rating="5" role="radio" aria-checked="false" aria-label="5 stars" tabindex="0">☆</span>
+      </div>
+
+      <p class="rating-display-value" id="rating-display-value">0.0</p>
+
+      <form id="rating-form" class="rating-form">
+        <label for="rating-email" class="visually-hidden">Email</label>
+        <input
+          type="email"
+          name="email"
+          id="rating-email"
+          placeholder="Email"
+          required
+          class="rating-email-input"
+          autocomplete="email"
+          pattern="^\w+(\.\w+)?@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$"
+        />
+        <label for="rating-review" class="visually-hidden">Your comment</label>
+        <textarea
+          name="review"
+          id="rating-review"
+          placeholder="Your comment"
+          class="rating-review-input"
+          rows="3"
+        ></textarea>
+        <div class="rating-form-actions">
+          <button type="submit" class="btn btn-primary">Send</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,114 @@
+<section class="favorites-page section">
+  <div class="container favorites-container-wrapper">
+    
+    <div class="favorites-content-wrapper">
+      <!-- Left side: Quote + Info + Image -->
+      <aside class="favorites-aside">
+         <load src="partials/quote.html" />
+         
+         <div class="favorites-aside-bottom">
+            <!-- Simplified inline Info Card for Favorites -->
+            <div class="info-card favorites-info-card">
+              <div class="info-header">
+                <span class="info-icon">
+                  <svg width="20" height="20" aria-hidden="true">
+                    <use href="#icon-info"></use>
+                  </svg>
+                </span>
+                <div class="info-content">
+                  <div class="info-time">
+                    <div class="info-time-value">110 min</div>
+                    <div class="info-time-label">Daily norm of sports</div>
+                  </div>
+                  <!-- No text paragraph here for favorites -->
+                </div>
+              </div>
+            </div>
+            <!-- Sidebar Image (Inline for Favorites specific styles) -->
+            <div class="favorites-sidebar-image">
+              <picture>
+                <!-- Mobile: до 767px -->
+                <source
+                  media="(max-width: 767px)"
+                  type="image/avif"
+                  srcset="
+                    ./img/avif/mobile_fav_sitebar_img.avif 1x,
+                    ./img/avif/mobile_fav_sitebar_img@2x.avif 2x,
+                    ./img/avif/mobile_fav_sitebar_img@3x.avif 3x
+                  "
+                />
+                <source
+                  media="(max-width: 767px)"
+                  type="image/jpeg"
+                  srcset="
+                    ./img/mobile_fav_sitebar_img.jpg 1x,
+                    ./img/mobile_fav_sitebar_img@2x.jpg 2x,
+                    ./img/mobile_fav_sitebar_img@3x.jpg 3x
+                  "
+                />
+
+                <!-- Tablet: 768px - 1279px -->
+                <source
+                  media="(min-width: 768px) and (max-width: 1279px)"
+                  type="image/avif"
+                  srcset="
+                    ./img/avif/tab_fav_sitebar_img.avif 1x,
+                    ./img/avif/tab_fav_sitebar_img@2x.avif 2x,
+                    ./img/avif/tab_fav_sitebar_img@3x.avif 3x
+                  "
+                />
+                <source
+                  media="(min-width: 768px) and (max-width: 1279px)"
+                  type="image/jpeg"
+                  srcset="
+                    ./img/tab_fav_sitebar_img.jpg 1x,
+                    ./img/tab_fav_sitebar_img@2x.jpg 2x,
+                    ./img/tab_fav_sitebar_img@3x.jpg 3x
+                  "
+                />
+
+                <!-- Desktop: від 1280px -->
+                <source
+                  media="(min-width: 1280px)"
+                  type="image/avif"
+                  srcset="
+                    ./img/avif/desc_fav_sitebar_img.avif 1x,
+                    ./img/avif/desc_fav_sitebar_img@2x.avif 2x,
+                    ./img/avif/desc_fav_sitebar_img@3x.avif 3x
+                  "
+                />
+                <source
+                  media="(min-width: 1280px)"
+                  type="image/jpeg"
+                  srcset="
+                    ./img/desc_fav_sitebar_img.jpg 1x,
+                    ./img/desc_fav_sitebar_img@2x.jpg 2x,
+                    ./img/desc_fav_sitebar_img@3x.jpg 3x
+                  "
+                />
+
+                <img src="./img/desc_fav_sitebar_img.jpg" alt="Women doing sports" class="sidebar-image" width="335" height="571" loading="lazy" />
+              </picture>
+            </div>
+         </div>
+      </aside>
+
+      <!-- Right side: Favorites List -->
+      <div class="favorites-list-container">
+        <!-- Title "Favorites" is now part of the structure or can be outside? 
+             Design shows "Favorites" above the list? No, "Favorites" title is top left of the PAGE.
+             Wait, looking at Screenshot 2:
+             Row 1: Title "Favorites"
+             Row 2: Left Col (Quote...), Right Col (List)
+             So Title should be OUTSIDE the wrapper if it spans width, OR inside the wrapper if it aligns with something.
+             Let's put Title above the wrapper.
+        -->
+         <h2 class="section-title">Favorites</h2>
+         
+        <div id="favorites-container" class="favorites-list">
+          <!-- Favorite cards will be rendered here -->
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,34 @@
+{
+  "name": "cusova",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "format": "prettier --write \"src/**/*.{js,css,html}\"",
+    "lint:css": "stylelint \"src/**/*.css\"",
+    "lint:css:fix": "stylelint \"src/**/*.css\" --fix",
+    "postcss": "postcss src/css/**/*.css --dir dist/css"
+  },
+  "devDependencies": {
+    "postcss": "^8.5.6",
+    "postcss-cli": "^11.0.1",
+    "postcss-sort-media-queries": "^5.2.0",
+    "prettier": "^3.7.4",
+    "stylelint": "^16.26.1",
+    "stylelint-config-standard": "^39.0.1",
+    "vite-plugin-html-inject": "^1.1.2",
+    "vite-plugin-full-reload": "^1.2.0",
+    "vite-plugin-static-copy": "^3.1.4",
+    "glob": "^13.0.0",
+    "vite": "^7.2.4"
+
+  },
+  "dependencies": {
+    "axios": "^1.13.2",
+    "modern-normalize": "^3.0.1",
+    "navigo": "^8.11.1"
+  }
+}
