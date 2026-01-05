@@ -109,41 +109,7 @@ async function renderFavorites() {
 
   container.innerHTML = `<div class="favorites-grid">${cardsHtml}</div>`;
 
-  // Add event listeners
-  container.querySelectorAll('.favorite-delete-btn').forEach(btn => {
-    btn.addEventListener('click', handleDeleteFavorite);
-  });
-
-  container.querySelectorAll('.favorite-start-btn').forEach(btn => {
-    btn.addEventListener('click', handleStartExercise);
-  });
-}
-
-// Handle delete favorite
-async function handleDeleteFavorite(e) {
-  e.stopPropagation();
-  const exerciseId = e.currentTarget.dataset.id;
-  if (exerciseId) {
-    removeFavorite(exerciseId);
-    await renderFavorites();
-  }
-}
-
-// Handle start exercise
-async function handleStartExercise(e) {
-  e.stopPropagation();
-  const exerciseId = e.currentTarget.dataset.id;
-  if (!exerciseId) return;
-
-  try {
-    const exercise = await getExerciseById(exerciseId);
-    renderExerciseModal(exercise);
-    openModal('exercise-modal');
-    setupExerciseModal(exerciseId);
-  } catch (err) {
-    console.error('Failed to fetch exercise details:', err);
-    alert('Failed to load exercise details.');
-  }
+  // Event delegation is already set up in initFavoritesPage
 }
 
 // Setup exercise modal
@@ -261,9 +227,60 @@ export async function initFavoritesPage() {
     await initQuote();
 
     await renderFavorites();
+
+    // Setup event delegation for favorites
+    setupFavoritesEventDelegation();
   } catch (err) {
     console.error('Error initializing favorites page:', err);
   } finally {
     if (favoritesPage) favoritesPage.classList.add('loaded');
   }
+}
+
+// Setup event delegation for favorites container
+function setupFavoritesEventDelegation() {
+  let container = document.getElementById('favorites-container');
+  if (!container) return;
+
+  // Remove old event listeners by cloning the container
+  // This prevents duplicate listeners in SPA when navigating back to favorites
+  const newContainer = container.cloneNode(true);
+  container.parentNode.replaceChild(newContainer, container);
+  container = document.getElementById('favorites-container');
+
+  container.addEventListener('click', async (e) => {
+    // Handle delete button clicks
+    const deleteBtn = e.target.closest('.favorite-delete-btn');
+    if (deleteBtn) {
+      e.stopPropagation();
+      const exerciseId = deleteBtn.dataset.id;
+      if (exerciseId) {
+        removeFavorite(exerciseId);
+        try {
+          await renderFavorites();
+        } catch (err) {
+          console.error('Failed to render favorites:', err);
+        }
+      }
+      return;
+    }
+
+    // Handle start button clicks
+    const startBtn = e.target.closest('.favorite-start-btn');
+    if (startBtn) {
+      e.stopPropagation();
+      const exerciseId = startBtn.dataset.id;
+      if (!exerciseId) return;
+
+      try {
+        const exercise = await getExerciseById(exerciseId);
+        renderExerciseModal(exercise);
+        openModal('exercise-modal');
+        setupExerciseModal(exerciseId);
+      } catch (err) {
+        console.error('Failed to fetch exercise details:', err);
+        alert('Failed to load exercise details.');
+      }
+    }
+  });
 }

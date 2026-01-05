@@ -19,12 +19,15 @@ export function setActiveNav(route) {
   }
 }
 
-// Setup navigation click handlers for SPA routing
+// Setup navigation click handlers for SPA routing using event delegation
 function setupNavigation() {
-  const navLinks = document.querySelectorAll('.nav-link');
+  // Desktop navigation
+  const nav = document.querySelector('.nav');
+  if (nav) {
+    nav.addEventListener('click', e => {
+      const link = e.target.closest('.nav-link');
+      if (!link) return;
 
-  navLinks.forEach(link => {
-    link.addEventListener('click', e => {
       e.preventDefault();
       const route = link.dataset.route;
       if (route) {
@@ -32,12 +35,15 @@ function setupNavigation() {
         setActiveNav(route);
       }
     });
-  });
+  }
 
-  // Setup mobile navigation
-  const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
-  mobileNavLinks.forEach(link => {
-    link.addEventListener('click', e => {
+  // Mobile navigation
+  const mobileNav = document.querySelector('.mobile-nav');
+  if (mobileNav) {
+    mobileNav.addEventListener('click', e => {
+      const link = e.target.closest('.mobile-nav-link');
+      if (!link) return;
+
       e.preventDefault();
       const route = link.dataset.route;
       if (route) {
@@ -46,7 +52,7 @@ function setupNavigation() {
         closeMobileMenu();
       }
     });
-  });
+  }
 }
 
 // Burger menu functionality

@@ -1,11 +1,5 @@
 export default {
   plugins: {
-    cssnano: {
-      preset: ['default', {
-        discardComments: {
-          removeAll: true,
-        },
-      }],
-    },
+    // cssnano disabled temporarily - uncomment after installing: yarn add -D cssnano
   },
 };

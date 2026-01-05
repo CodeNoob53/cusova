@@ -3,9 +3,9 @@
   display: flex;
   flex-direction: row;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
   padding: 0;
-  gap: 20px;
+  gap: 8px;
   margin-top: 32px;
   padding-bottom: 20px;
 }
@@ -14,49 +14,70 @@
 .pagination__nav-btn {
   box-sizing: border-box;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 6px;
-  width: 32px;
-  height: 32px;
-  border: 1px solid rgb(36, 36, 36, 0.1);
-  border-radius: 18px;
+  padding: 0;
+  width: 44px;
+  height: 44px;
+  border: 1px solid #242424;
+  border-radius: 50%;
   background: var(--color-white);
   cursor: pointer;
   transition: var(--transition);
   font-family: inherit;
-  font-size: 16px;
-  color: rgb(36, 36, 36, 0.5);
+}
+
+.pagination__icon {
+  color: #242424;
+  transition: var(--transition);
+}
+
+.pagination__icon--flip {
+  transform: rotate(180deg);
 }
 
 .pagination__nav-btn:hover:not(:disabled) {
+  background-color: #242424;
   border-color: #242424;
-  color: #242424;
+}
+
+.pagination__nav-btn:hover:not(:disabled) .pagination__icon {
+  color: var(--color-white);
 }
 
 .pagination__nav-btn:disabled {
-  opacity: 0.5;
   cursor: not-allowed;
   border-color: rgb(36, 36, 36, 0.1);
-  color: rgb(36, 36, 36, 0.5);
+  background-color: var(--color-white);
+}
+
+.pagination__nav-btn:disabled .pagination__icon {
+  color: rgb(36, 36, 36, 0.1);
 }
 
 /* Page number buttons */
+.pagination__pages {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
 .page-number {
   font-family: 'DM Sans', sans-serif;
   font-style: normal;
   font-weight: 400;
-  font-size: 24px;
-  line-height: 32px;
+  font-size: 20px;
+  line-height: 1;
   letter-spacing: 0.04em;
-  color: #D5D5D5;
+  color: #242424;
   cursor: pointer;
   transition: var(--transition);
   background: none;
-  border: none;
+  border: 1px solid #242424;
+  border-radius: 50%;
   padding: 0;
-  height: 32px;
+  min-width: 44px;
+  height: 44px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -65,26 +86,33 @@
 .page-number.active {
   box-sizing: border-box;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 0 12px;
-  min-width: 32px;
-  height: 32px;
+  padding: 0;
+  min-width: 44px;
+  height: 44px;
   border: 1px solid #242424;
-  border-radius: 18px;
+  border-radius: 50%;
   color: #242424;
   cursor: default;
+  font-weight: 500;
 }
 
 .page-number:not(.active):hover:not(:disabled) {
-  color: #242424;
+  background-color: #242424;
+  border-color: #242424;
+  color: var(--color-white);
 }
 
 .page-number.dots {
   cursor: default;
-  color: #D5D5D5;
+  color: rgb(36, 36, 36, 0.3);
   pointer-events: none;
+  min-width: 24px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  border: none;
+  background: none;
 }
 
 .page-number:disabled {

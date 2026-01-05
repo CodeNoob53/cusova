@@ -99,13 +99,22 @@ async function fetchAndRender() {
 
 // Setup pagination clicks
 function setupPagination() {
-  const container = document.getElementById('pagination-container');
+  let container = document.getElementById('pagination-container');
   if (!container) return;
+
+  // Remove old event listeners by cloning (prevents duplicates in SPA)
+  const newContainer = container.cloneNode(true);
+  container.parentNode.replaceChild(newContainer, container);
+  container = document.getElementById('pagination-container');
 
   container.addEventListener('click', e => {
     // Check for both page-number buttons and navigation buttons
     const btn = e.target.closest('.page-number, .pagination__nav-btn');
-    if (!btn || btn.disabled || btn.classList.contains('dots')) return;
+
+    // Verify target element is a button or has button-like behavior
+    if (!btn) return;
+    if (btn.nodeName !== 'BUTTON' && !btn.classList.contains('page-number')) return;
+    if (btn.disabled || btn.classList.contains('dots')) return;
 
     const newPage = Number(btn.dataset.page);
     if (newPage && newPage !== appState.page) {
@@ -125,8 +134,13 @@ function setupPagination() {
 
 // Setup filter tabs
 function setupFilterTabs() {
-  const filterTabs = document.getElementById('filter-tabs');
+  let filterTabs = document.getElementById('filter-tabs');
   if (!filterTabs) return;
+
+  // Remove old event listeners by cloning (prevents duplicates in SPA)
+  const newTabs = filterTabs.cloneNode(true);
+  filterTabs.parentNode.replaceChild(newTabs, filterTabs);
+  filterTabs = document.getElementById('filter-tabs');
 
   filterTabs.addEventListener('click', async e => {
     const btn = e.target.closest('.filter-tab');
@@ -143,14 +157,24 @@ function setupFilterTabs() {
     appState.category = null;
 
     hideExercisesHeader();
-    await fetchAndRender();
+
+    try {
+      await fetchAndRender();
+    } catch (err) {
+      console.error('Failed to fetch data:', err);
+    }
   });
 }
 
 // Setup exercise cards (and category clicks)
 function setupExerciseCards() {
-  const exercisesContainer = document.getElementById('exercises-container');
+  let exercisesContainer = document.getElementById('exercises-container');
   if (!exercisesContainer) return;
+
+  // Remove old event listeners by cloning (prevents duplicates in SPA)
+  const newContainer = exercisesContainer.cloneNode(true);
+  exercisesContainer.parentNode.replaceChild(newContainer, exercisesContainer);
+  exercisesContainer = document.getElementById('exercises-container');
 
   exercisesContainer.addEventListener('click', async e => {
     // Handle category card clicks
@@ -170,8 +194,12 @@ function setupExerciseCards() {
 
       showExercisesHeader(categoryName);
       setupExerciseSearch(appState.categoryFilter, appState.category); // Re-init search
-      
-      await fetchAndRender();
+
+      try {
+        await fetchAndRender();
+      } catch (err) {
+        console.error('Failed to fetch exercises:', err);
+      }
       return;
     }
 
@@ -238,14 +266,14 @@ function hideExercisesHeader() {
 function setupExerciseSearch(filterType, categoryName) {
   const searchForm = document.getElementById('exercise-search-form');
   const searchInput = document.getElementById('exercise-search-input');
-  const clearBtn = document.getElementById('exercise-clear-btn');
-  
+
   if (!searchForm || !searchInput) return;
-  
-  // Remove previous listener
+
+  // Remove previous listener by cloning the form
   const newForm = searchForm.cloneNode(true);
   searchForm.parentNode.replaceChild(newForm, searchForm);
-  
+
+  // Get fresh references after cloning
   const form = document.getElementById('exercise-search-form');
   const input = document.getElementById('exercise-search-input');
   const clear = document.getElementById('exercise-clear-btn');

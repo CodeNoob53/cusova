@@ -116,67 +116,66 @@ const resetRatingForm = () => {
   if (reviewInput) reviewInput.value = '';
 };
 
-// Initialize rating stars interaction
+// Initialize rating stars interaction using event delegation
 export const initRatingStars = () => {
-  const stars = document.querySelectorAll('#rating-modal .rating-star');
+  const starsContainer = document.getElementById('rating-stars');
   const ratingValue = document.getElementById('rating-display-value');
-  let selectedRating = 0;
 
-  // Remove old event listeners by cloning elements
-  stars.forEach((star, index) => {
-    const newStar = star.cloneNode(true);
-    star.parentNode.replaceChild(newStar, star);
-  });
+  if (!starsContainer) return;
 
-  // Get fresh references after cloning
-  const freshStars = document.querySelectorAll('#rating-modal .rating-star');
+  // Remove old event listeners by cloning the container
+  const newContainer = starsContainer.cloneNode(true);
+  starsContainer.parentNode.replaceChild(newContainer, starsContainer);
 
-  freshStars.forEach((star, index) => {
-    star.addEventListener('click', () => {
-      selectedRating = parseFloat(star.dataset.rating);
+  // Get fresh reference after cloning
+  const freshContainer = document.getElementById('rating-stars');
 
-      // Update visual feedback
-      freshStars.forEach((s, i) => {
-        if (i <= index) {
-          s.classList.add('active');
-        } else {
-          s.classList.remove('active');
-        }
-      });
+  // Event delegation for click
+  freshContainer.addEventListener('click', (e) => {
+    const star = e.target.closest('.rating-star');
+    if (!star) return;
 
-      // Update rating value display
-      if (ratingValue) {
-        ratingValue.textContent = selectedRating.toFixed(1);
+    const selectedRating = parseFloat(star.dataset.rating);
+    const stars = freshContainer.querySelectorAll('.rating-star');
+    const index = Array.from(stars).indexOf(star);
+
+    // Update visual feedback
+    stars.forEach((s, i) => {
+      if (i <= index) {
+        s.classList.add('active');
+      } else {
+        s.classList.remove('active');
       }
     });
 
-    // Hover effect
-    star.addEventListener('mouseenter', () => {
-      freshStars.forEach((s, i) => {
-        if (i <= index) {
-          s.classList.add('hover');
-        } else {
-          s.classList.remove('hover');
-        }
-      });
+    // Update rating value display
+    if (ratingValue) {
+      ratingValue.textContent = selectedRating.toFixed(1);
+    }
+  });
+
+  // Event delegation for hover
+  freshContainer.addEventListener('mouseover', (e) => {
+    const star = e.target.closest('.rating-star');
+    if (!star) return;
+
+    const stars = freshContainer.querySelectorAll('.rating-star');
+    const index = Array.from(stars).indexOf(star);
+
+    stars.forEach((s, i) => {
+      if (i <= index) {
+        s.classList.add('hover');
+      } else {
+        s.classList.remove('hover');
+      }
     });
   });
 
   // Reset hover effect on mouse leave
-  const starsContainer = document.getElementById('rating-stars');
-  if (starsContainer) {
-    // Remove old listener
-    const newContainer = starsContainer.cloneNode(true);
-    starsContainer.parentNode.replaceChild(newContainer, starsContainer);
-
-    const freshContainer = document.getElementById('rating-stars');
-    freshContainer.addEventListener('mouseleave', () => {
-      const stars = document.querySelectorAll('#rating-modal .rating-star');
-      stars.forEach(star => star.classList.remove('hover'));
-    });
-  }
-
-  return () => selectedRating;
+  freshContainer.addEventListener('mouseleave', () => {
+    const stars = freshContainer.querySelectorAll('.rating-star');
+    stars.forEach(star => star.classList.remove('hover'));
+  });
 };
 
 // Get current rating value

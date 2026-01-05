@@ -101,10 +101,35 @@ export const renderCategories = async (categories, containerId) => {
 
 export const renderPagination = async (currentPage, totalPages) => {
   const container = document.getElementById('pagination-container');
-  if (!container || totalPages <= 1) {
+  if (!container) return;
+
+  if (totalPages <= 1) {
     container.innerHTML = '';
     return;
   }
+
+  // Load template if not exists
+  if (!container.querySelector('.pagination')) {
+    const template = await loadTemplate('pagination');
+    container.innerHTML = template;
+  }
+
+  // Get navigation buttons from markup
+  const firstBtn = container.querySelector('.pagination__first');
+  const prevBtn = container.querySelector('.pagination__prev');
+  const nextBtn = container.querySelector('.pagination__next');
+  const lastBtn = container.querySelector('.pagination__last');
+  const pagesContainer = container.querySelector('.pagination__pages');
+
+  // Update navigation buttons state
+  firstBtn.disabled = currentPage === 1;
+  prevBtn.disabled = currentPage === 1;
+  prevBtn.dataset.page = currentPage - 1;
+
+  nextBtn.disabled = currentPage === totalPages;
+  nextBtn.dataset.page = currentPage + 1;
+  lastBtn.disabled = currentPage === totalPages;
+  lastBtn.dataset.page = totalPages;
 
   // Generate pages array with ellipsis logic
   let pages = [];
@@ -112,14 +137,12 @@ export const renderPagination = async (currentPage, totalPages) => {
   if (totalPages <= 5) {
     for (let i = 1; i <= totalPages; i++) pages.push(i);
   } else {
-    // Always add 1
     pages.push(1);
 
     if (currentPage > 3) {
       pages.push('...');
     }
 
-    // Neighbors
     const start = Math.max(2, currentPage - 1);
     const end = Math.min(totalPages - 1, currentPage + 1);
 
@@ -131,19 +154,14 @@ export const renderPagination = async (currentPage, totalPages) => {
       pages.push('...');
     }
 
-    // Always add last
     if (totalPages > 1) {
       pages.push(totalPages);
     }
   }
 
-  // Remove duplicates
   pages = [...new Set(pages)];
 
-  // Build navigation buttons
-  const firstBtn = `<button class="pagination__nav-btn" data-page="1" ${currentPage === 1 ? 'disabled' : ''} aria-label="Перша сторінка">««</button>`;
-  const prevBtn = `<button class="pagination__nav-btn" data-page="${currentPage - 1}" ${currentPage === 1 ? 'disabled' : ''} aria-label="Попередня сторінка">‹</button>`;
-
+  // Build pages HTML
   const pagesHtml = pages
     .map(page => {
       if (page === '...') {
@@ -153,11 +171,5 @@ export const renderPagination = async (currentPage, totalPages) => {
     })
     .join('');
 
-  const nextBtn = `<button class="pagination__nav-btn" data-page="${currentPage + 1}" ${currentPage === totalPages ? 'disabled' : ''} aria-label="Наступна сторінка">›</button>`;
-  const lastBtn = `<button class="pagination__nav-btn" data-page="${totalPages}" ${currentPage === totalPages ? 'disabled' : ''} aria-label="Остання сторінка">»»</button>`;
-
-  const template = await loadTemplate('pagination');
-  const html = replacePlaceholders(template, { pages: `${firstBtn}${prevBtn}${pagesHtml}${nextBtn}${lastBtn}` });
-
-  container.innerHTML = html;
+  pagesContainer.innerHTML = pagesHtml;
 };
