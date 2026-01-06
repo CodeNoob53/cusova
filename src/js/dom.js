@@ -1,8 +1,24 @@
-// Cache for loaded templates
-const templateCache = {};
+// Import templates as raw strings
+import exerciseCardTemplate from '../partials/exercise-card.html?raw';
+import categoryCardTemplate from '../partials/category-card.html?raw';
+import favoriteCardTemplate from '../partials/favorite-card.html?raw';
+import favoritesEmptyTemplate from '../partials/favorites-empty.html?raw';
+import paginationTemplate from '../partials/pagination.html?raw';
+
+// Map of template names to raw HTML
+const templates = {
+  'exercise-card': exerciseCardTemplate,
+  'category-card': categoryCardTemplate,
+  'favorite-card': favoriteCardTemplate,
+  'favorites-empty': favoritesEmptyTemplate,
+  'pagination': paginationTemplate,
+};
+
+// Cache for loaded templates (kept for backward compatibility, though not strictly needed with imports)
+const templateCache = { ...templates };
 
 /**
- * Load template from partials folder
+ * Load template from bundled imports
  * @param {string} templateName
  * @returns {Promise<string>}
  */
@@ -11,15 +27,8 @@ export const loadTemplate = async templateName => {
     return templateCache[templateName];
   }
 
-  try {
-    const response = await fetch(`./partials/${templateName}.html`);
-    const template = await response.text();
-    templateCache[templateName] = template;
-    return template;
-  } catch (error) {
-    console.error(`Error loading template ${templateName}:`, error);
-    return '';
-  }
+  console.warn(`Template not found in bundle: ${templateName}`);
+  return '';
 };
 
 /**

@@ -1,38 +1,43 @@
 import Navigo from 'navigo';
 
+// Import pages and partials as raw strings
+import homePageHtml from '../partials/home-page.html?raw';
+import favoritesPageHtml from '../partials/favorites-page.html?raw';
+
+import heroHtml from '../partials/hero.html?raw';
+import filtersHtml from '../partials/filters.html?raw';
+import quoteHtml from '../partials/quote.html?raw';
+import sidebarImageHtml from '../partials/sidebar-image.html?raw';
+import infoCardHtml from '../partials/info-card.html?raw';
+
 // Initialize router
 const router = new Navigo('/', { hash: false });
 
-// Process <load> tags in HTML
-async function processLoadTags(html) {
+// Map of view names to their raw HTML content
+const routes = {
+  home: homePageHtml,
+  favorites: favoritesPageHtml,
+};
+
+// Map of partial paths (as used in <load src="...">) to their raw HTML content
+const partials = {
+  'partials/hero.html': heroHtml,
+  'partials/filters.html': filtersHtml,
+  'partials/quote.html': quoteHtml,
+  'partials/sidebar-image.html': sidebarImageHtml,
+  'partials/info-card.html': infoCardHtml,
+};
+
+// Process <load> tags in HTML synchronously
+function processLoadTags(html) {
   const loadRegex = /<load\s+src="([^"]+)"\s*\/>/g;
-  let match;
-  const promises = [];
-  const replacements = [];
-
-  while ((match = loadRegex.exec(html)) !== null) {
-    const fullMatch = match[0];
-    const src = match[1];
-
-    promises.push(
-      fetch(`/${src}`)
-        .then(res => res.text())
-        .then(content => ({ fullMatch, content }))
-        .catch(err => {
-          console.error(`Failed to load ${src}:`, err);
-          return { fullMatch, content: `<!-- Failed to load ${src} -->` };
-        })
-    );
-  }
-
-  const results = await Promise.all(promises);
-
-  let processedHtml = html;
-  for (const { fullMatch, content } of results) {
-    processedHtml = processedHtml.replace(fullMatch, content);
-  }
-
-  return processedHtml;
+  return html.replace(loadRegex, (match, src) => {
+    if (partials[src]) {
+      return partials[src];
+    }
+    console.warn(`Partial not found: ${src}`);
+    return `<!-- Failed to load ${src} -->`;
+  });
 }
 
 // Load view HTML into #app
@@ -40,18 +45,16 @@ async function loadView(viewName) {
   const app = document.getElementById('app');
   if (!app) return;
 
-  try {
-    const response = await fetch(`/partials/${viewName}-page.html`);
-    let html = await response.text();
-
-    // Process <load> tags
-    html = await processLoadTags(html);
-
-    app.innerHTML = html;
-  } catch (error) {
-    console.error(`Failed to load view: ${viewName}`, error);
+  const html = routes[viewName];
+  if (!html) {
     app.innerHTML = '<h1>Page not found</h1>';
+    return;
   }
+
+  // Process <load> tags synchronously
+  const processedHtml = processLoadTags(html);
+
+  app.innerHTML = processedHtml;
 }
 
 // Export router instance
