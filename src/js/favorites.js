@@ -239,14 +239,12 @@ export async function initFavoritesPage() {
 
 // Setup event delegation for favorites container
 function setupFavoritesEventDelegation() {
-  let container = document.getElementById('favorites-container');
+  const container = document.getElementById('favorites-container');
   if (!container) return;
 
-  // Remove old event listeners by cloning the container
-  // This prevents duplicate listeners in SPA when navigating back to favorites
-  const newContainer = container.cloneNode(true);
-  container.parentNode.replaceChild(newContainer, container);
-  container = document.getElementById('favorites-container');
+  // Check if already has listener to prevent duplicates
+  if (container.dataset.listenerAttached === 'true') return;
+  container.dataset.listenerAttached = 'true';
 
   container.addEventListener('click', async (e) => {
     // Handle delete button clicks

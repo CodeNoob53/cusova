@@ -123,20 +123,17 @@ export const initRatingStars = () => {
 
   if (!starsContainer) return;
 
-  // Remove old event listeners by cloning the container
-  const newContainer = starsContainer.cloneNode(true);
-  starsContainer.parentNode.replaceChild(newContainer, starsContainer);
-
-  // Get fresh reference after cloning
-  const freshContainer = document.getElementById('rating-stars');
+  // Check if already has listener to prevent duplicates
+  if (starsContainer.dataset.listenerAttached === 'true') return;
+  starsContainer.dataset.listenerAttached = 'true';
 
   // Event delegation for click
-  freshContainer.addEventListener('click', (e) => {
+  starsContainer.addEventListener('click', (e) => {
     const star = e.target.closest('.rating-star');
     if (!star) return;
 
     const selectedRating = parseFloat(star.dataset.rating);
-    const stars = freshContainer.querySelectorAll('.rating-star');
+    const stars = starsContainer.querySelectorAll('.rating-star');
     const index = Array.from(stars).indexOf(star);
 
     // Update visual feedback
@@ -155,11 +152,11 @@ export const initRatingStars = () => {
   });
 
   // Event delegation for hover
-  freshContainer.addEventListener('mouseover', (e) => {
+  starsContainer.addEventListener('mouseover', (e) => {
     const star = e.target.closest('.rating-star');
     if (!star) return;
 
-    const stars = freshContainer.querySelectorAll('.rating-star');
+    const stars = starsContainer.querySelectorAll('.rating-star');
     const index = Array.from(stars).indexOf(star);
 
     stars.forEach((s, i) => {
@@ -172,8 +169,8 @@ export const initRatingStars = () => {
   });
 
   // Reset hover effect on mouse leave
-  freshContainer.addEventListener('mouseleave', () => {
-    const stars = freshContainer.querySelectorAll('.rating-star');
+  starsContainer.addEventListener('mouseleave', () => {
+    const stars = starsContainer.querySelectorAll('.rating-star');
     stars.forEach(star => star.classList.remove('hover'));
   });
 };

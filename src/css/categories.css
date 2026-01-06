@@ -1,4 +1,4 @@
-/* Category Card Styles */
+/* Category Card Styles - only category specific styles */
 .categories-list {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -8,121 +8,96 @@
   margin-top: 24px;
 }
 
-.category-card {
-  height: 240px;
-  border-radius: 12px;
-  background-size: cover;
-  background-position: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  color: white;
-  cursor: pointer;
-  transition: transform 0.2s ease;
-}
-
-.category-card:hover {
-  transform: scale(1.02);
-}
-
-.category-name {
-  font-size: 24px;
-  font-weight: 600;
-  margin: 0;
-  text-transform: capitalize;
-}
-
-.category-filter {
-  font-size: 14px;
-  opacity: 0.8;
-  margin-top: 8px;
-}
-
-/* Exercise Cards Grid */
-.exercises-grid {
+.categories-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--gap-15);
+  grid-template-columns: repeat(3, 290px);
+  gap: 15px;
+  width: 100%;
+  justify-content: center; /* Centering the grid if it's smaller than container */
+  min-height: 500px; /* Reserve space to prevent CLS */
 }
 
-.exercise-card {
-  border-radius: 12px;
-  overflow: hidden;
-  position: relative;
+.category-card {
+  width: 100%;
+  max-width: 290px;
   height: 242px;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  cursor: pointer;
-  transition: var(--transition);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.exercise-card:hover {
-  transform: translateY(-4px);
-}
-
-.exercise-card-content {
-  position: relative;
-  z-index: 2;
-  padding: 45px 0;
+  border-radius: 12px;
   display: flex;
   flex-direction: column;
-  gap: 2px;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+
+  /* padding: 45px 105px;  Removing strict padding to allow flex centering of content */
 }
 
-.exercise-card-bg {
+.category-card-bg {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  z-index: 0;
-}
-
-.exercise-card-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(0deg, rgb(17, 17, 17, 0.5) 0%, rgb(17, 17, 17, 0.5) 100%);
   z-index: 1;
 }
 
-.exercise-name {
-  font-size: var(--fs-24);
-  font-weight: 400;
-  line-height: var(--lh-24);
-  color: var(--color-light);
+.category-card-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(0deg, rgb(17, 17, 17, 0.5), rgb(17, 17, 17, 0.5));
+  z-index: 2;
+}
+
+.category-card-content {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
   text-align: center;
 }
 
-.exercise-category {
-  font-size: var(--fs-12);
+.category-name {
+  font-family: 'DM Sans', sans-serif;
   font-weight: 400;
-  color: var(--color-light-40);
-  text-align: center;
+  font-size: 24px;
+  line-height: 24px; /* Figma: 24px */
+  text-transform: capitalize;
+  color: #f4f4f4;
+  margin: 0;
+  white-space: nowrap;
+}
+
+.category-filter {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 18px; /* Figma: 18px */
+  color: rgb(244, 244, 244, 0.4);
+  margin: 0;
 }
 
 /* Responsive */
-@media (width <= 1200px) {
+@media (width <= 920px) {
   .exercises-grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1fr;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  .categories-grid {
+    grid-template-columns: repeat(2, 290px);
   }
 }
 
-@media (width <= 768px) {
-  .exercises-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (width <= 480px) {
-  .exercises-grid {
+@media (width <= 650px) {
+  .categories-grid {
     grid-template-columns: 1fr;
   }
 }

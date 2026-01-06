@@ -7,8 +7,12 @@ import {
 import {
   renderCategories,
   renderExercises,
-  renderPagination,
 } from './dom.js';
+import {
+  renderPagination,
+  setupPagination as setupPaginationListeners,
+  scrollToTop,
+} from './pagination.js';
 import {
   openModal,
   closeModal,
@@ -19,6 +23,12 @@ import {
 } from './modal.js';
 import { addFavorite, isFavorite } from './favorites.js';
 import { initQuote } from './quote.js';
+
+// Email validation helper
+function validateEmail(email) {
+  const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return re.test(email);
+}
 
 // State object
 const appState = {
@@ -41,7 +51,7 @@ export async function initHomePage() {
 
     // 2. Initial Categories
     await fetchAndRender();
-    
+
   } catch (err) {
     console.error('Error initializing home page:', err);
   } finally {
@@ -53,38 +63,38 @@ export async function initHomePage() {
   // Setup event listeners
   setupFilterTabs();
   setupExerciseCards();
-  setupPagination();
-  
+  setupPaginationListeners(handlePageChange);
+
   // Note: setupExerciseSearch is called dynamically when entering exercises view
 }
 
 // Fetch and render based on current state
 async function fetchAndRender() {
   const container = document.getElementById('exercises-container');
-  
+
   // Clear container / show loader could go here
-  
+
   try {
     if (appState.view === 'categories') {
       // Fetch Categories
-      const filters = await getFilters({ 
-        filter: appState.filter, 
-        page: appState.page, 
-        limit: 12 
+      const filters = await getFilters({
+        filter: appState.filter,
+        page: appState.page,
+        limit: 12
       });
       renderCategories(filters.results, 'exercises-container');
       renderPagination(filters.page ? Number(filters.page) : 1, filters.totalPages || 1);
     } else {
       // Fetch Exercises
-      const params = { 
-        limit: 10, 
-        page: appState.page 
+      const params = {
+        limit: 10,
+        page: appState.page
       };
-      
+
       if (appState.categoryFilter === 'Muscles') params.muscles = appState.category.toLowerCase();
       else if (appState.categoryFilter === 'Body parts') params.bodypart = appState.category.toLowerCase();
       else if (appState.categoryFilter === 'Equipment') params.equipment = appState.category.toLowerCase();
-      
+
       if (appState.keyword) params.keyword = appState.keyword;
 
       const exercises = await getExercises(params);
@@ -97,50 +107,23 @@ async function fetchAndRender() {
   }
 }
 
-// Setup pagination clicks
-function setupPagination() {
-  let container = document.getElementById('pagination-container');
-  if (!container) return;
-
-  // Remove old event listeners by cloning (prevents duplicates in SPA)
-  const newContainer = container.cloneNode(true);
-  container.parentNode.replaceChild(newContainer, container);
-  container = document.getElementById('pagination-container');
-
-  container.addEventListener('click', e => {
-    // Check for both page-number buttons and navigation buttons
-    const btn = e.target.closest('.page-number, .pagination__nav-btn');
-
-    // Verify target element is a button or has button-like behavior
-    if (!btn) return;
-    if (btn.nodeName !== 'BUTTON' && !btn.classList.contains('page-number')) return;
-    if (btn.disabled || btn.classList.contains('dots')) return;
-
-    const newPage = Number(btn.dataset.page);
-    if (newPage && newPage !== appState.page) {
-      appState.page = newPage;
-      fetchAndRender();
-
-      // Scroll to top of exercises container
-      const exercisesContainer = document.getElementById('exercises-header');
-      if (exercisesContainer) {
-          exercisesContainer.scrollIntoView({ behavior: 'smooth' });
-      } else {
-          document.querySelector('.exercises-section')?.scrollIntoView({ behavior: 'smooth' });
-      }
-    }
-  });
+// Handle page change from pagination
+function handlePageChange(newPage) {
+  if (newPage && newPage !== appState.page) {
+    appState.page = newPage;
+    fetchAndRender();
+    scrollToTop();
+  }
 }
 
 // Setup filter tabs
 function setupFilterTabs() {
-  let filterTabs = document.getElementById('filter-tabs');
+  const filterTabs = document.getElementById('filter-tabs');
   if (!filterTabs) return;
 
-  // Remove old event listeners by cloning (prevents duplicates in SPA)
-  const newTabs = filterTabs.cloneNode(true);
-  filterTabs.parentNode.replaceChild(newTabs, filterTabs);
-  filterTabs = document.getElementById('filter-tabs');
+  // Check if already has listener to prevent duplicates
+  if (filterTabs.dataset.listenerAttached === 'true') return;
+  filterTabs.dataset.listenerAttached = 'true';
 
   filterTabs.addEventListener('click', async e => {
     const btn = e.target.closest('.filter-tab');
@@ -168,13 +151,12 @@ function setupFilterTabs() {
 
 // Setup exercise cards (and category clicks)
 function setupExerciseCards() {
-  let exercisesContainer = document.getElementById('exercises-container');
+  const exercisesContainer = document.getElementById('exercises-container');
   if (!exercisesContainer) return;
 
-  // Remove old event listeners by cloning (prevents duplicates in SPA)
-  const newContainer = exercisesContainer.cloneNode(true);
-  exercisesContainer.parentNode.replaceChild(newContainer, exercisesContainer);
-  exercisesContainer = document.getElementById('exercises-container');
+  // Check if already has listener to prevent duplicates
+  if (exercisesContainer.dataset.listenerAttached === 'true') return;
+  exercisesContainer.dataset.listenerAttached = 'true';
 
   exercisesContainer.addEventListener('click', async e => {
     // Handle category card clicks
@@ -193,7 +175,7 @@ function setupExerciseCards() {
       appState.keyword = '';
 
       showExercisesHeader(categoryName);
-      setupExerciseSearch(appState.categoryFilter, appState.category); // Re-init search
+      setupExerciseSearch(); // Re-init search
 
       try {
         await fetchAndRender();
@@ -263,80 +245,55 @@ function hideExercisesHeader() {
 }
 
 // Setup exercise search
-function setupExerciseSearch(filterType, categoryName) {
+function setupExerciseSearch() {
   const searchForm = document.getElementById('exercise-search-form');
   const searchInput = document.getElementById('exercise-search-input');
+  const clearBtn = document.getElementById('exercise-clear-btn');
 
   if (!searchForm || !searchInput) return;
 
-  // Remove previous listener by cloning the form
-  const newForm = searchForm.cloneNode(true);
-  searchForm.parentNode.replaceChild(newForm, searchForm);
+  // Check if already has listener to prevent duplicates
+  if (searchForm.dataset.listenerAttached === 'true') return;
+  searchForm.dataset.listenerAttached = 'true';
 
-  // Get fresh references after cloning
-  const form = document.getElementById('exercise-search-form');
-  const input = document.getElementById('exercise-search-input');
-  const clear = document.getElementById('exercise-clear-btn');
-  
   // Show/hide clear button based on input
-  input.addEventListener('input', () => {
-    if (input.value.trim()) {
-      clear.classList.remove('hidden');
+  searchInput.addEventListener('input', () => {
+    if (searchInput.value.trim()) {
+      clearBtn.classList.remove('hidden');
     } else {
-      clear.classList.add('hidden');
+      clearBtn.classList.add('hidden');
     }
   });
-  
+
   // Clear button click
-  clear.addEventListener('click', async () => {
-    input.value = '';
-    clear.classList.add('hidden');
-    input.focus();
-    
-    // Re-fetch exercises without keyword
-    const params = { limit: 10, page: 1 };
-    
-    if (filterType === 'Muscles') {
-      params.muscles = categoryName.toLowerCase();
-    } else if (filterType === 'Body parts') {
-      params.bodypart = categoryName.toLowerCase();
-    } else if (filterType === 'Equipment') {
-      params.equipment = categoryName.toLowerCase();
-    }
-    
+  clearBtn.addEventListener('click', async () => {
+    searchInput.value = '';
+    clearBtn.classList.add('hidden');
+    searchInput.focus();
+
+    // Update state and re-fetch
+    appState.keyword = '';
+    appState.page = 1;
+
     try {
-      const exercises = await getExercises(params);
-      renderExercises(exercises.results, 'exercises-container');
-      renderPagination(1, exercises.totalPages || 1);
+      await fetchAndRender();
     } catch (err) {
       console.error('Failed to fetch exercises:', err);
     }
   });
-  
-  form.addEventListener('submit', async e => {
+
+  // Search form submit
+  searchForm.addEventListener('submit', async e => {
     e.preventDefault();
-    
-    const keyword = input.value.trim();
-    const params = { limit: 10, page: 1 };
-    
-    // Add category filter
-    if (filterType === 'Muscles') {
-      params.muscles = categoryName.toLowerCase();
-    } else if (filterType === 'Body parts') {
-      params.bodypart = categoryName.toLowerCase();
-    } else if (filterType === 'Equipment') {
-      params.equipment = categoryName.toLowerCase();
-    }
-    
-    // Add keyword if present
-    if (keyword) {
-      params.keyword = keyword;
-    }
-    
+
+    const keyword = searchInput.value.trim();
+
+    // Update state and re-fetch
+    appState.keyword = keyword;
+    appState.page = 1;
+
     try {
-      const exercises = await getExercises(params);
-      renderExercises(exercises.results, 'exercises-container');
-      renderPagination(1, exercises.totalPages || 1);
+      await fetchAndRender();
     } catch (err) {
       console.error('Failed to search exercises:', err);
     }
