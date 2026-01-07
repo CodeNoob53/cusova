@@ -37,8 +37,12 @@ const appState = {
   category: null,     // Selected category name
   categoryFilter: null, // The filter type of the selected category (e.g. 'Muscles')
   keyword: '',
-  page: 1,
-  limit: 12
+  page: 1
+};
+
+// Get items limit based on screen width
+const getLimit = () => {
+  return window.innerWidth < 768 ? 9 : (appState.view === 'categories' ? 12 : 10);
 };
 
 // Initialize home page
@@ -64,8 +68,27 @@ export async function initHomePage() {
   setupFilterTabs();
   setupExerciseCards();
   setupPaginationListeners(handlePageChange);
+  setupResizeListener();
 
   // Note: setupExerciseSearch is called dynamically when entering exercises view
+}
+
+// Setup window resize listener to update limit and re-fetch if needed
+function setupResizeListener() {
+  let timeoutId;
+  let currentLimit = getLimit();
+
+  window.addEventListener('resize', () => {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => {
+      const newLimit = getLimit();
+      if (newLimit !== currentLimit) {
+        currentLimit = newLimit;
+        appState.page = 1; // Reset to first page when limit changes to avoid empty pages
+        fetchAndRender();
+      }
+    }, 300);
+  });
 }
 
 // Fetch and render based on current state
@@ -75,19 +98,21 @@ async function fetchAndRender() {
   // Clear container / show loader could go here
 
   try {
+    const limit = getLimit();
+
     if (appState.view === 'categories') {
       // Fetch Categories
       const filters = await getFilters({
         filter: appState.filter,
         page: appState.page,
-        limit: 12
+        limit
       });
       renderCategories(filters.results, 'exercises-container');
       renderPagination(filters.page ? Number(filters.page) : 1, filters.totalPages || 1);
     } else {
       // Fetch Exercises
       const params = {
-        limit: 10,
+        limit,
         page: appState.page
       };
 

@@ -14,7 +14,7 @@
   gap: 15px;
   width: 100%;
   justify-content: center; /* Centering the grid if it's smaller than container */
-  min-height: 500px; /* Reserve space to prevent CLS */
+  min-height: 1013px; /* Reserve space to prevent CLS */
 }
 
 .category-card {

@@ -1,5 +1,6 @@
 /* Main Content Layout */
 .main-content {
+  min-height: 1121px;
   display: grid;
   grid-template-columns: 444px 1fr;
   gap: var(--gap-32);
