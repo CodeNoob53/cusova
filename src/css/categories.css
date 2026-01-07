@@ -14,7 +14,7 @@
   gap: 15px;
   width: 100%;
   justify-content: center; /* Centering the grid if it's smaller than container */
-  min-height: 1013px; /* Reserve space to prevent CLS */
+  min-height: 1013px; /* Reserve space to prevent CLS - desktop (3 cols × 4 rows) */
 }
 
 .category-card {
@@ -89,15 +89,22 @@
     grid-template-columns: 1fr;
     max-width: 100%;
     margin: 0 auto;
+    min-height: 400px; /* Reduced min-height for tablet (1 col × ~3 cards) */
   }
 
   .categories-grid {
     grid-template-columns: repeat(2, 290px);
+    min-height: 759px; /* Tablet (2 cols × 3 rows: (242px × 3) + (15px × 2)) */
   }
 }
 
 @media (width <= 650px) {
   .categories-grid {
     grid-template-columns: 1fr;
+    min-height: 2198px; /* Mobile (1 col × 9 cards: (242px × 9) + (15px × 8)) */
+  }
+
+  .exercises-grid {
+    min-height: 300px; /* Mobile exercise cards */
   }
 }

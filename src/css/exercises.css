@@ -5,7 +5,14 @@
   gap: 16px;
   width: 100%;
   max-width: 900px;
-  min-height: 600px; /* Reserve space to prevent CLS */
+  min-height: 600px; /* Reserve space to prevent CLS - desktop (2 cols × ~4 rows) */
+}
+
+/* Mobile responsive min-height for exercises */
+@media (width <= 920px) {
+  .exercises-grid {
+    min-height: 450px; /* Mobile (1 col × ~3 cards: 141px × 3 + gaps) */
+  }
 }
 
 .exercise-card {

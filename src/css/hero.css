@@ -17,14 +17,17 @@
 }
 
 .hero-title-wrapper {
-  display: block;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
   margin-bottom: 20px;
 }
 
 .hero-star-icon {
-  float: left;
-  margin-top: 6px;
+  width: 60px;
+  height: 60px;
   flex-shrink: 0;
+  margin-top: 6px; /* Align with text baseline */
 }
 
 .hero-title {
@@ -35,6 +38,7 @@
   letter-spacing: -1.48px;
   color: var(--color-black);
   margin: 0;
+  flex: 1;
 }
 
 .accent-text {
@@ -92,8 +96,9 @@
   border-radius: 60px;
   overflow: hidden;
   position: relative;
-  background: #fff;
+  background: #f4f4f4; /* Fallback color while loading */
   margin: 0 auto;
+  aspect-ratio: 1376 / 350; /* Prevent CLS */
 }
 
 .hero-img-large {
@@ -104,6 +109,7 @@
   position: absolute;
   top: 0;
   left: 0;
+  aspect-ratio: 1376 / 574; /* Prevent CLS - matches image dimensions */
 }
 
 /* Responsive */
@@ -124,11 +130,25 @@
   }
 
   .hero-image-wrapper {
-    height: 600px;
+    height: 335px; /* Mobile height adjusted for aspect-ratio */
     border-radius: 30px;
+    aspect-ratio: 335 / 812; /* Mobile aspect ratio */
   }
 
   .hero-img-large {
     object-position: 50% 50%;
+    aspect-ratio: 335 / 812; /* Mobile image aspect ratio */
+  }
+}
+
+/* Tablet breakpoint */
+@media (width > 768px) and (width <= 1279px) {
+  .hero-image-wrapper {
+    height: 400px; /* Tablet height */
+    aspect-ratio: 704 / 400; /* Tablet aspect ratio */
+  }
+
+  .hero-img-large {
+    aspect-ratio: 704 / 574; /* Tablet image aspect ratio */
   }
 }
