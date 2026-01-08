@@ -81,7 +81,7 @@ export const renderExercises = async (exercises, containerId) => {
     })
     .join('');
 
-  container.innerHTML = `<div class="exercises-grid">${exercisesHtml}</div>`;
+  container.innerHTML = `<ul class="exercises-grid">${exercisesHtml}</ul>`;
 };
 
 export const renderCategories = async (categories, containerId) => {
@@ -105,5 +105,39 @@ export const renderCategories = async (categories, containerId) => {
     })
     .join('');
 
-  container.innerHTML = `<div class="categories-grid">${categoriesHtml}</div>`;
+  container.innerHTML = `<ul class="categories-grid">${categoriesHtml}</ul>`;
+};
+
+/**
+ * Render skeleton loaders
+ * @param {string} view - 'categories' or 'exercises'
+ * @param {string} containerId - ID of container element
+ * @param {number} count - Number of skeleton items to render
+ */
+export const renderSkeleton = (view, containerId, count = 9) => {
+  const container = document.getElementById(containerId);
+  if (!container) return;
+
+  let skeletonHtml = '';
+
+  if (view === 'categories') {
+    skeletonHtml = Array(count)
+      .fill('<li class="category-skeleton skeleton-shimmer"></li>')
+      .join('');
+    container.innerHTML = `<ul class="categories-grid">${skeletonHtml}</ul>`;
+  } else {
+    const item = `
+      <li class="exercise-skeleton">
+        <div class="shimmer-header">
+           <div class="shimmer-badge skeleton-shimmer"></div>
+           <div class="shimmer-badge skeleton-shimmer"></div>
+        </div>
+        <div class="shimmer-title skeleton-shimmer"></div>
+        <div class="shimmer-line skeleton-shimmer"></div>
+        <div class="shimmer-line skeleton-shimmer"></div>
+      </li>
+    `;
+    skeletonHtml = Array(count).fill(item).join('');
+    container.innerHTML = `<ul class="exercises-grid">${skeletonHtml}</ul>`;
+  }
 };

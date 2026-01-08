@@ -7,6 +7,7 @@ import {
 import {
   renderCategories,
   renderExercises,
+  renderSkeleton,
 } from './dom.js';
 import {
   renderPagination,
@@ -49,8 +50,14 @@ const getLimit = () => {
 export async function initHomePage() {
   const mainContent = document.querySelector('.main-content');
 
+  // Render initial skeletons immediately
+  const initialLimit = getLimit();
+  renderSkeleton(appState.view, 'exercises-container', initialLimit);
+
   try {
     // 1. Initialize Quote
+    // Note: This is async and might fetch from API, so skeletal loading for exercises 
+    // should already be visible by now.
     await initQuote();
 
     // 2. Initial Categories
@@ -95,10 +102,9 @@ function setupResizeListener() {
 async function fetchAndRender() {
   const container = document.getElementById('exercises-container');
 
-  // Clear container / show loader could go here
-
   try {
     const limit = getLimit();
+    renderSkeleton(appState.view, 'exercises-container', limit);
 
     if (appState.view === 'categories') {
       // Fetch Categories

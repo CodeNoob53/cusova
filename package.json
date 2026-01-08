@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build --base=/cusova/",
     "preview": "vite preview",
     "format": "prettier --write \"src/**/*.{js,css,html}\"",
     "lint:css": "stylelint \"src/**/*.css\"",

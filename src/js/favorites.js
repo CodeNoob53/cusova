@@ -107,7 +107,7 @@ async function renderFavorites() {
     })
     .join('');
 
-  container.innerHTML = `<div class="favorites-grid">${cardsHtml}</div>`;
+  container.innerHTML = `<ul class="favorites-grid">${cardsHtml}</ul>`;
 
   // Event delegation is already set up in initFavoritesPage
 }
