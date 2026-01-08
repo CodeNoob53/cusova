@@ -67,18 +67,18 @@ import{N as J,a as K}from"./assets/vendor-BFQQak21.js";(function(){const t=docum
                   media="(max-width: 767px)"\r
                   type="image/avif"\r
                   srcset="\r
-                    ./img/avif/mobile_fav_sitebar_img.avif 1x,\r
-                    ./img/avif/mobile_fav_sitebar_img@2x.avif 2x,\r
-                    ./img/avif/mobile_fav_sitebar_img@3x.avif 3x\r
+                    /img/avif/mobile_fav_sitebar_img.avif 1x,\r
+                    /img/avif/mobile_fav_sitebar_img@2x.avif 2x,\r
+                    /img/avif/mobile_fav_sitebar_img@3x.avif 3x\r
                   "\r
                 />\r
                 <source\r
                   media="(max-width: 767px)"\r
                   type="image/jpeg"\r
                   srcset="\r
-                    ./img/mobile_fav_sitebar_img.jpg 1x,\r
-                    ./img/mobile_fav_sitebar_img@2x.jpg 2x,\r
-                    ./img/mobile_fav_sitebar_img@3x.jpg 3x\r
+                    /img/mobile_fav_sitebar_img.jpg 1x,\r
+                    /img/mobile_fav_sitebar_img@2x.jpg 2x,\r
+                    /img/mobile_fav_sitebar_img@3x.jpg 3x\r
                   "\r
                 />\r
 \r
@@ -87,18 +87,18 @@ import{N as J,a as K}from"./assets/vendor-BFQQak21.js";(function(){const t=docum
                   media="(min-width: 768px) and (max-width: 1279px)"\r
                   type="image/avif"\r
                   srcset="\r
-                    ./img/avif/tab_fav_sitebar_img.avif 1x,\r
-                    ./img/avif/tab_fav_sitebar_img@2x.avif 2x,\r
-                    ./img/avif/tab_fav_sitebar_img@3x.avif 3x\r
+                    /img/avif/tab_fav_sitebar_img.avif 1x,\r
+                    /img/avif/tab_fav_sitebar_img@2x.avif 2x,\r
+                    /img/avif/tab_fav_sitebar_img@3x.avif 3x\r
                   "\r
                 />\r
                 <source\r
                   media="(min-width: 768px) and (max-width: 1279px)"\r
                   type="image/jpeg"\r
                   srcset="\r
-                    ./img/tab_fav_sitebar_img.jpg 1x,\r
-                    ./img/tab_fav_sitebar_img@2x.jpg 2x,\r
-                    ./img/tab_fav_sitebar_img@3x.jpg 3x\r
+                    /img/tab_fav_sitebar_img.jpg 1x,\r
+                    /img/tab_fav_sitebar_img@2x.jpg 2x,\r
+                    /img/tab_fav_sitebar_img@3x.jpg 3x\r
                   "\r
                 />\r
 \r
@@ -107,22 +107,22 @@ import{N as J,a as K}from"./assets/vendor-BFQQak21.js";(function(){const t=docum
                   media="(min-width: 1280px)"\r
                   type="image/avif"\r
                   srcset="\r
-                    ./img/avif/desc_fav_sitebar_img.avif 1x,\r
-                    ./img/avif/desc_fav_sitebar_img@2x.avif 2x,\r
-                    ./img/avif/desc_fav_sitebar_img@3x.avif 3x\r
+                    /img/avif/desc_fav_sitebar_img.avif 1x,\r
+                    /img/avif/desc_fav_sitebar_img@2x.avif 2x,\r
+                    /img/avif/desc_fav_sitebar_img@3x.avif 3x\r
                   "\r
                 />\r
                 <source\r
                   media="(min-width: 1280px)"\r
                   type="image/jpeg"\r
                   srcset="\r
-                    ./img/desc_fav_sitebar_img.jpg 1x,\r
-                    ./img/desc_fav_sitebar_img@2x.jpg 2x,\r
-                    ./img/desc_fav_sitebar_img@3x.jpg 3x\r
+                    /img/desc_fav_sitebar_img.jpg 1x,\r
+                    /img/desc_fav_sitebar_img@2x.jpg 2x,\r
+                    /img/desc_fav_sitebar_img@3x.jpg 3x\r
                   "\r
                 />\r
 \r
-                <img src="./img/desc_fav_sitebar_img.jpg" alt="Women doing sports" class="sidebar-image" width="335" height="571" loading="lazy" />\r
+                <img src="/img/desc_fav_sitebar_img.jpg" alt="Women doing sports" class="sidebar-image" width="335" height="571" loading="lazy" />\r
               </picture>\r
             </div>\r
          </div>\r
@@ -151,7 +151,7 @@ import{N as J,a as K}from"./assets/vendor-BFQQak21.js";(function(){const t=docum
   <div class="hero">\r
     <div class="hero-content">\r
       <div class="hero-title-wrapper">\r
-        <img src="./img/star-icon.svg" alt="" class="hero-star-icon" />\r
+        <img src="/img/star-icon.svg" alt="" class="hero-star-icon" />\r
         <h1 class="hero-title">Get <span class="accent-text">Body</span> in shape, Stay healthy</h1>\r
       </div>\r
       <p class="hero-description">\r
@@ -165,22 +165,22 @@ import{N as J,a as K}from"./assets/vendor-BFQQak21.js";(function(){const t=docum
         <source\r
           type="image/avif"\r
           srcset="\r
-            ./img/avif/desc_hero_on_tag.avif 1x,\r
-            ./img/avif/desc_hero_on_tag@2x.avif 2x,\r
-            ./img/avif/desc_hero_on_tag@3x.avif 3x\r
+            /img/avif/desc_hero_on_tag.avif 1x,\r
+            /img/avif/desc_hero_on_tag@2x.avif 2x,\r
+            /img/avif/desc_hero_on_tag@3x.avif 3x\r
           "\r
         />\r
         <source\r
           type="image/jpeg"\r
           srcset="\r
-            ./img/desc_hero_on_tag.jpg 1x,\r
-            ./img/desc_hero_on_tag@2x.jpg 2x,\r
-            ./img/desc_hero_on_tag@3x.jpg 3x\r
+            /img/desc_hero_on_tag.jpg 1x,\r
+            /img/desc_hero_on_tag@2x.jpg 2x,\r
+            /img/desc_hero_on_tag@3x.jpg 3x\r
           "\r
         />\r
 \r
         <img\r
-          src="./img/desc_hero_on_tag.jpg"\r
+          src="/img/desc_hero_on_tag.jpg"\r
           alt="Workout"\r
           class="hero-img-small"\r
           width="168"\r
@@ -207,18 +207,18 @@ import{N as J,a as K}from"./assets/vendor-BFQQak21.js";(function(){const t=docum
         media="(max-width: 767px)"\r
         type="image/avif"\r
         srcset="\r
-          ./img/avif/mobile_hero_main.avif 1x,\r
-          ./img/avif/mobile_hero_main@2x.avif 2x,\r
-          ./img/avif/mobile_hero_main@3x.avif 3x\r
+          /img/avif/mobile_hero_main.avif 1x,\r
+          /img/avif/mobile_hero_main@2x.avif 2x,\r
+          /img/avif/mobile_hero_main@3x.avif 3x\r
         "\r
       />\r
       <source\r
         media="(max-width: 767px)"\r
         type="image/jpeg"\r
         srcset="\r
-          ./img/mobile_hero_main.jpg 1x,\r
-          ./img/mobile_hero_main@2x.jpg 2x,\r
-          ./img/mobile_hero_main@3x.jpg 3x\r
+          /img/mobile_hero_main.jpg 1x,\r
+          /img/mobile_hero_main@2x.jpg 2x,\r
+          /img/mobile_hero_main@3x.jpg 3x\r
         "\r
       />\r
 \r
@@ -227,18 +227,18 @@ import{N as J,a as K}from"./assets/vendor-BFQQak21.js";(function(){const t=docum
         media="(min-width: 768px) and (max-width: 1279px)"\r
         type="image/avif"\r
         srcset="\r
-          ./img/avif/tab_hero_main.avif 1x,\r
-          ./img/avif/tab_hero_main@2x.avif 2x,\r
-          ./img/avif/tab_hero_main@3x.avif 3x\r
+          /img/avif/tab_hero_main.avif 1x,\r
+          /img/avif/tab_hero_main@2x.avif 2x,\r
+          /img/avif/tab_hero_main@3x.avif 3x\r
         "\r
       />\r
       <source\r
         media="(min-width: 768px) and (max-width: 1279px)"\r
         type="image/jpeg"\r
         srcset="\r
-          ./img/tab_hero_main.jpg 1x,\r
-          ./img/tab_hero_main@2x.jpg 2x,\r
-          ./img/tab_hero_main@3x.jpg 3x\r
+          /img/tab_hero_main.jpg 1x,\r
+          /img/tab_hero_main@2x.jpg 2x,\r
+          /img/tab_hero_main@3x.jpg 3x\r
         "\r
       />\r
 \r
@@ -247,23 +247,23 @@ import{N as J,a as K}from"./assets/vendor-BFQQak21.js";(function(){const t=docum
         media="(min-width: 1280px)"\r
         type="image/avif"\r
         srcset="\r
-          ./img/avif/desc_hero_main.avif 1x,\r
-          ./img/avif/desc_hero_main@2x.avif 2x,\r
-          ./img/avif/desc_hero_main@3x.avif 3x\r
+          /img/avif/desc_hero_main.avif 1x,\r
+          /img/avif/desc_hero_main@2x.avif 2x,\r
+          /img/avif/desc_hero_main@3x.avif 3x\r
         "\r
       />\r
       <source\r
         media="(min-width: 1280px)"\r
         type="image/jpeg"\r
         srcset="\r
-          ./img/desc_hero_main.jpg 1x,\r
-          ./img/desc_hero_main@2x.jpg 2x,\r
-          ./img/desc_hero_main@3x.jpg 3x\r
+          /img/desc_hero_main.jpg 1x,\r
+          /img/desc_hero_main@2x.jpg 2x,\r
+          /img/desc_hero_main@3x.jpg 3x\r
         "\r
       />\r
 \r
       <img\r
-        src="./img/desc_hero_main.jpg"\r
+        src="/img/desc_hero_main.jpg"\r
         alt="Working out together"\r
         class="hero-img-large"\r
         width="1376"\r
@@ -330,18 +330,18 @@ import{N as J,a as K}from"./assets/vendor-BFQQak21.js";(function(){const t=docum
       media="(max-width: 767px)"\r
       type="image/avif"\r
       srcset="\r
-        ./img/avif/mobile_sitebar_img.avif 1x,\r
-        ./img/avif/mobile_sitebar_img@2x.avif 2x,\r
-        ./img/avif/mobile_sitebar_img@3x.avif 3x\r
+        /img/avif/mobile_sitebar_img.avif 1x,\r
+        /img/avif/mobile_sitebar_img@2x.avif 2x,\r
+        /img/avif/mobile_sitebar_img@3x.avif 3x\r
       "\r
     />\r
     <source\r
       media="(max-width: 767px)"\r
       type="image/jpeg"\r
       srcset="\r
-        ./img/mobile_sitebar_img.jpg 1x,\r
-        ./img/mobile_sitebar_img@2x.jpg 2x,\r
-        ./img/mobile_sitebar_img@3x.jpg 3x\r
+        /img/mobile_sitebar_img.jpg 1x,\r
+        /img/mobile_sitebar_img@2x.jpg 2x,\r
+        /img/mobile_sitebar_img@3x.jpg 3x\r
       "\r
     />\r
 \r
@@ -350,18 +350,18 @@ import{N as J,a as K}from"./assets/vendor-BFQQak21.js";(function(){const t=docum
       media="(min-width: 768px) and (max-width: 1279px)"\r
       type="image/avif"\r
       srcset="\r
-        ./img/avif/tab_sitebar_img.avif 1x,\r
-        ./img/avif/tab_sitebar_img@2x.avif 2x,\r
-        ./img/avif/tab_sitebar_img@3x.avif 3x\r
+        /img/avif/tab_sitebar_img.avif 1x,\r
+        /img/avif/tab_sitebar_img@2x.avif 2x,\r
+        /img/avif/tab_sitebar_img@3x.avif 3x\r
       "\r
     />\r
     <source\r
       media="(min-width: 768px) and (max-width: 1279px)"\r
       type="image/jpeg"\r
       srcset="\r
-        ./img/tab_sitebar_img.jpg 1x,\r
-        ./img/tab_sitebar_img@2x.jpg 2x,\r
-        ./img/tab_sitebar_img@3x.jpg 3x\r
+        /img/tab_sitebar_img.jpg 1x,\r
+        /img/tab_sitebar_img@2x.jpg 2x,\r
+        /img/tab_sitebar_img@3x.jpg 3x\r
       "\r
     />\r
 \r
@@ -370,22 +370,22 @@ import{N as J,a as K}from"./assets/vendor-BFQQak21.js";(function(){const t=docum
       media="(min-width: 1280px)"\r
       type="image/avif"\r
       srcset="\r
-        ./img/avif/desc_sitebar_img.avif 1x,\r
-        ./img/avif/desc_sitebar_img@2x.avif 2x,\r
-        ./img/avif/desc_sitebar_img@3x.avif 3x\r
+        /img/avif/desc_sitebar_img.avif 1x,\r
+        /img/avif/desc_sitebar_img@2x.avif 2x,\r
+        /img/avif/desc_sitebar_img@3x.avif 3x\r
       "\r
     />\r
     <source\r
       media="(min-width: 1280px)"\r
       type="image/jpeg"\r
       srcset="\r
-        ./img/desc_sitebar_img.jpg 1x,\r
-        ./img/desc_sitebar_img@2x.jpg 2x,\r
-        ./img/desc_sitebar_img@3x.jpg 3x\r
+        /img/desc_sitebar_img.jpg 1x,\r
+        /img/desc_sitebar_img@2x.jpg 2x,\r
+        /img/desc_sitebar_img@3x.jpg 3x\r
       "\r
     />\r
 \r
-    <img src="./img/desc_sitebar_img.jpg" alt="Women doing sports" class="sidebar-image" width="335" height="571" loading="lazy" />\r
+    <img src="/img/desc_sitebar_img.jpg" alt="Women doing sports" class="sidebar-image" width="335" height="571" loading="lazy" />\r
   </picture>\r
 </div>\r
 `,ne=`<div class="info-card">
