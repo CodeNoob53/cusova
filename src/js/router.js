@@ -10,8 +10,10 @@ import quoteHtml from '../partials/quote.html?raw';
 import sidebarImageHtml from '../partials/sidebar-image.html?raw';
 import infoCardHtml from '../partials/info-card.html?raw';
 
-// Initialize router
-const router = new Navigo('/', { hash: false });
+// Initialize router with base path for GitHub Pages
+// In production (GitHub Pages), the base is '/cusova/', in dev it's '/'
+const basePath = import.meta.env.BASE_URL || '/';
+const router = new Navigo(basePath, { hash: false });
 
 // Map of view names to their raw HTML content
 const routes = {
@@ -40,6 +42,26 @@ function processLoadTags(html) {
   });
 }
 
+// Fix image paths to include base path for production
+function fixImagePaths(html) {
+  // Only fix paths in production (when basePath is not '/')
+  if (basePath === '/') return html;
+
+  // Fix src="/img/..." to src="/cusova/img/..."
+  html = html.replace(/src="\/img\//g, `src="${basePath}img/`);
+
+  // Fix srcset="/img/..." to srcset="/cusova/img/..."
+  html = html.replace(/srcset="\s*\/img\//g, `srcset="${basePath}img/`);
+
+  // Fix srcset with multiple sources like: /img/avif/mobile.avif 1x, /img/avif/mobile@2x.avif 2x
+  html = html.replace(/srcset="([^"]*)"/g, (match, content) => {
+    const fixed = content.replace(/\/img\//g, `${basePath}img/`);
+    return `srcset="${fixed}"`;
+  });
+
+  return html;
+}
+
 // Load view HTML into #app
 async function loadView(viewName) {
   const app = document.getElementById('app');
@@ -52,7 +74,10 @@ async function loadView(viewName) {
   }
 
   // Process <load> tags synchronously
-  const processedHtml = processLoadTags(html);
+  let processedHtml = processLoadTags(html);
+
+  // Fix image paths for production
+  processedHtml = fixImagePaths(processedHtml);
 
   app.innerHTML = processedHtml;
 }
