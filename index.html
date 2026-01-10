@@ -11,10 +11,6 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/cusova/favicon-16x16.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/cusova/apple-touch-icon.png" />
 
-    <!-- Preload critical fonts -->
-    <link rel="preload" href="/cusova/assets/DMSans-Regular-Dvt-avFb.ttf" as="font" type="font/ttf" crossorigin>
-    <link rel="preload" href="/cusova/assets/DMSans-Medium-BjjbzgJR.ttf" as="font" type="font/ttf" crossorigin>
-
     <!-- Critical inline CSS for above-the-fold content -->
     <style>
       /* Critical CSS - reset and base layout */
@@ -31,14 +27,14 @@
       .category-skeleton{width:100%;max-width:290px;height:242px;border-radius:12px}
 
       /* Hide non-critical content initially */
-      .footer,.modal{display:none}
+      .modal{display:none}
     </style>
 
     <!-- Main Styles - load async to not block render -->
     <noscript></noscript>
     <script type="module" crossorigin src="/cusova/index.js"></script>
     <link rel="modulepreload" crossorigin href="/cusova/assets/vendor-BWC8OeqA.js">
-    <link rel="stylesheet" crossorigin href="/cusova/assets/index-D3hUF2-U.css">
+    <link rel="stylesheet" crossorigin href="/cusova/assets/index-LRRieShR.css">
   </head>
   <body>
     <div class="container">
@@ -137,10 +133,10 @@
   <nav class="navigation" aria-label="Main navigation">
     <ul class="nav-list">
       <li class="nav-item">
-        <a href="#" class="nav-link active" id="nav-home" data-page="home">Home</a>
+        <a href="#home" class="nav-link active" id="nav-home">Home</a>
       </li>
       <li class="nav-item">
-        <a href="#" class="nav-link" id="nav-favorites" data-page="favorites">Favorites</a>
+        <a href="#favorites" class="nav-link" id="nav-favorites">Favorites</a>
       </li>
     </ul>
   </nav>
@@ -206,10 +202,10 @@
       <nav class="mobile-navigation" aria-label="Mobile navigation">
         <ul class="mobile-nav-list">
           <li class="mobile-nav-item">
-            <a href="#" class="mobile-nav-link" data-page="home">Home</a>
+            <a href="#home" class="mobile-nav-link">Home</a>
           </li>
           <li class="mobile-nav-item">
-            <a href="#" class="mobile-nav-link" data-page="favorites">Favorites</a>
+            <a href="#favorites" class="mobile-nav-link">Favorites</a>
           </li>
         </ul>
       </nav>
@@ -243,7 +239,8 @@
 
 
       <main id="app"  class="main">
-        <section class="hero-wrapper">
+        <div id="home-page">
+  <section class="hero-wrapper">
   <div class="hero">
     <div class="hero-content">
       <div class="hero-title-wrapper">
@@ -340,8 +337,8 @@
 </section>
 
 
-<div>
-  <section class="filters-section">
+  <div>
+    <section class="filters-section">
   <div class="filters-header">
     <h2 class="section-title" id="section-title">Exercises</h2>
     <div class="filters-controls">
@@ -374,9 +371,9 @@
 </section>
 
 
-  <div class="main-content">
-    <aside class="sidebar">
-      <div class="quote-card">
+    <div class="main-content">
+      <aside class="sidebar">
+        <div class="quote-card">
   <div class="quote-header">
     <span class="quote-icon">
       <svg width="20" height="20" aria-hidden="true">
@@ -395,7 +392,7 @@
   <p id="quote-author" class="quote-author">Tom Brady</p>
 </div>
 
-      <div class="sidebar-image-card">
+        <div class="sidebar-image-card">
   <picture>
     <!-- Mobile: до 767px -->
     <source
@@ -437,7 +434,7 @@
   </picture>
 </div>
 
-      <div class="info-card">
+        <div class="info-card">
   <div class="info-header">
     <span class="info-icon">
       <svg width="20" height="20" aria-hidden="true">
@@ -460,30 +457,142 @@
   </div>
 </div>
 
-    </aside>
+      </aside>
 
-    <div class="content-area">
-      <div id="exercises-container" aria-live="polite" aria-busy="false">
-        <ul class="categories-grid">
-          <li class="category-skeleton skeleton-shimmer"></li>
-          <li class="category-skeleton skeleton-shimmer"></li>
-          <li class="category-skeleton skeleton-shimmer"></li>
-          <li class="category-skeleton skeleton-shimmer"></li>
-          <li class="category-skeleton skeleton-shimmer"></li>
-          <li class="category-skeleton skeleton-shimmer"></li>
-          <li class="category-skeleton skeleton-shimmer"></li>
-          <li class="category-skeleton skeleton-shimmer"></li>
-          <li class="category-skeleton skeleton-shimmer"></li>
-          <li class="category-skeleton skeleton-shimmer"></li>
-          <li class="category-skeleton skeleton-shimmer"></li>
-          <li class="category-skeleton skeleton-shimmer"></li>
-        </ul>
+      <div class="content-area">
+        <div id="exercises-container" aria-live="polite" aria-busy="false">
+          <ul class="categories-grid">
+            <li class="category-skeleton skeleton-shimmer"></li>
+            <li class="category-skeleton skeleton-shimmer"></li>
+            <li class="category-skeleton skeleton-shimmer"></li>
+            <li class="category-skeleton skeleton-shimmer"></li>
+            <li class="category-skeleton skeleton-shimmer"></li>
+            <li class="category-skeleton skeleton-shimmer"></li>
+            <li class="category-skeleton skeleton-shimmer"></li>
+            <li class="category-skeleton skeleton-shimmer"></li>
+            <li class="category-skeleton skeleton-shimmer"></li>
+            <li class="category-skeleton skeleton-shimmer"></li>
+            <li class="category-skeleton skeleton-shimmer"></li>
+            <li class="category-skeleton skeleton-shimmer"></li>
+          </ul>
+        </div>
+        <nav id="pagination-container" aria-label="Pagination">
+          <!-- Pagination will be injected here -->
+        </nav>
       </div>
-      <nav id="pagination-container" aria-label="Pagination">
-        <!-- Pagination will be injected here -->
-      </nav>
     </div>
   </div>
+</div>
+
+        <div id="favorites-page" class="hidden">
+  <section class="favorites-page section">
+    <div class="container favorites-container-wrapper">
+    
+    <div class="favorites-content-wrapper">
+      <!-- Left side: Quote + Info + Image -->
+      <aside class="favorites-aside">
+         <div class="quote-card">
+  <div class="quote-header">
+    <span class="quote-icon">
+      <svg width="20" height="20" aria-hidden="true">
+        <use href="#icon-quote"></use>
+      </svg>
+    </span>
+    <div class="quote-content">
+      <h3 class="quote-title">Quote of the day</h3>
+      <p id="quote-text" class="quote-text">
+        A lot of times I find that people who are blessed with the most talent don't ever develop
+        that attitude, and the ones who aren't blessed in that way are the most competitive and have
+        the biggest heart.
+      </p>
+    </div>
+  </div>
+  <p id="quote-author" class="quote-author">Tom Brady</p>
+</div>
+
+         
+         <div class="favorites-aside-bottom">
+            <!-- Simplified inline Info Card for Favorites -->
+            <div class="info-card favorites-info-card">
+              <div class="info-header">
+                <span class="info-icon">
+                  <svg width="20" height="20" aria-hidden="true">
+                    <use href="#icon-info"></use>
+                  </svg>
+                </span>
+                <div class="info-content">
+                  <div class="info-time">
+                    <div class="info-time-value">110 min</div>
+                    <div class="info-time-label">Daily norm of sports</div>
+                  </div>
+                  <!-- No text paragraph here for favorites -->
+                </div>
+              </div>
+            </div>
+            <!-- Sidebar Image (Inline for Favorites specific styles) -->
+            <div class="favorites-sidebar-image">
+              <picture>
+                <!-- Mobile: до 767px -->
+                <source
+                  media="(max-width: 767px)"
+                  type="image/avif"
+                  srcset="/cusova/assets/mobile_fav_sitebar_img-C1SVNZfq.avif 1x, /cusova/assets/mobile_fav_sitebar_img@2x-CY0HaULX.avif 2x, /cusova/assets/mobile_fav_sitebar_img@3x-BeQrzNon.avif 3x"
+                />
+                <source
+                  media="(max-width: 767px)"
+                  type="image/jpeg"
+                  srcset="/cusova/assets/mobile_fav_sitebar_img-B6LszAKL.jpg 1x, /cusova/assets/mobile_fav_sitebar_img@2x-BRwCW1EO.jpg 2x, /cusova/assets/mobile_fav_sitebar_img@3x-yJniBBxr.jpg 3x"
+                />
+
+                <!-- Tablet: 768px - 1279px -->
+                <source
+                  media="(min-width: 768px) and (max-width: 1279px)"
+                  type="image/avif"
+                  srcset="/cusova/assets/tab_fav_sitebar_img-DQ0dy-yp.avif 1x, /cusova/assets/tab_fav_sitebar_img@2x-D9wtA9ev.avif 2x, /cusova/assets/tab_fav_sitebar_img@3x-CkS13AWq.avif 3x"
+                />
+                <source
+                  media="(min-width: 768px) and (max-width: 1279px)"
+                  type="image/jpeg"
+                  srcset="/cusova/assets/tab_fav_sitebar_img-BKDaeY-w.jpg 1x, /cusova/assets/tab_fav_sitebar_img@2x-CPZ9TK5K.jpg 2x, /cusova/assets/tab_fav_sitebar_img@3x-DLzEFQxd.jpg 3x"
+                />
+
+                <!-- Desktop: від 1280px -->
+                <source
+                  media="(min-width: 1280px)"
+                  type="image/avif"
+                  srcset="/cusova/assets/desc_fav_sitebar_img-DpdDGvs5.avif 1x, /cusova/assets/desc_fav_sitebar_img@2x-Bt50G6OY.avif 2x, /cusova/assets/desc_fav_sitebar_img@3x-BHpvrBwb.avif 3x"
+                />
+                <source
+                  media="(min-width: 1280px)"
+                  type="image/jpeg"
+                  srcset="/cusova/assets/desc_fav_sitebar_img-CT1UkTAR.jpg 1x, /cusova/assets/desc_fav_sitebar_img@2x-7Yc6muYS.jpg 2x, /cusova/assets/desc_fav_sitebar_img@3x-Cgva7pHA.jpg 3x"
+                />
+
+                <img src="/cusova/assets/desc_fav_sitebar_img-CT1UkTAR.jpg" alt="Women doing sports" class="sidebar-image" width="335" height="571" loading="lazy" />
+              </picture>
+            </div>
+         </div>
+      </aside>
+
+      <!-- Right side: Favorites List -->
+      <div class="favorites-list-container">
+        <!-- Title "Favorites" is now part of the structure or can be outside? 
+             Design shows "Favorites" above the list? No, "Favorites" title is top left of the PAGE.
+             Wait, looking at Screenshot 2:
+             Row 1: Title "Favorites"
+             Row 2: Left Col (Quote...), Right Col (List)
+             So Title should be OUTSIDE the wrapper if it spans width, OR inside the wrapper if it aligns with something.
+             Let's put Title above the wrapper.
+        -->
+         <h2 class="section-title">Favorites</h2>
+         
+        <section id="favorites-container" class="favorites-list" aria-live="polite" aria-busy="false">
+          <!-- Favorite cards will be rendered here -->
+        </section>
+      </div>
+    </div>
+  </div>
+</section>
 </div>
 
       </main>
