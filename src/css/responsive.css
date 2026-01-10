@@ -1,0 +1,251 @@
+/* ==========================================================================
+   RESPONSIVE STYLES - Mobile-First Approach
+   ========================================================================== */
+
+/* All media queries extracted from individual CSS files and organized by breakpoint.
+   Original files: categories.css, layout.css, footer.css, exercises.css,
+                  favorites.css, hero.css, header.css, filters.css, modal.css */
+
+/* ==========================================================================
+   Mobile (width <= 650px)
+   ========================================================================== */
+
+@media (width <= 650px) {
+  /* categories.css */
+  .categories-grid {
+    grid-template-columns: 1fr;
+    min-height: 2198px; /* Mobile (1 col × 9 cards: (242px × 9) + (15px × 8)) */
+  }
+
+  .exercises-grid {
+    min-height: 300px; /* Mobile exercise cards */
+  }
+}
+
+/* ==========================================================================
+   Tablet/Small Desktop (width <= 768px)
+   ========================================================================== */
+
+@media (width <= 768px) {
+  /* hero.css */
+  .hero {
+    flex-direction: column;
+  }
+
+  .hero-title {
+    font-size: 48px;
+    line-height: 52px;
+  }
+
+  .hero-image-wrapper {
+    height: 600px;
+    border-radius: 30px;
+  }
+
+  .hero-img-large {
+    object-position: 50% 50%;
+  }
+
+  /* filters.css */
+  .filters-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .filters-controls {
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .exercise-search-form {
+    width: 100%;
+  }
+
+  /* modal.css */
+  .exercise-modal {
+    width: 90%;
+    max-width: 500px;
+    height: auto;
+    flex-direction: column;
+    padding: 24px;
+  }
+
+  .exercise-modal-gif {
+    width: 100%;
+    height: 200px;
+  }
+
+  .exercise-modal-actions {
+    flex-direction: column;
+  }
+
+  .exercise-modal-actions .btn {
+    width: 100%;
+  }
+
+  .rating-modal {
+    width: 90%;
+    max-width: 400px;
+    padding: 32px 24px;
+  }
+
+  .rating-star {
+    font-size: 28px;
+  }
+}
+
+/* ==========================================================================
+   Mobile Header (width <= 767px)
+   ========================================================================== */
+
+@media screen and (width <= 767px) {
+  /* header.css */
+  .header {
+    grid-template-columns: 1fr auto;
+    padding: 16px 20px;
+  }
+
+  .navigation,
+  .socials {
+    display: none;
+  }
+
+  .burger-btn {
+    display: block;
+  }
+}
+
+/* ==========================================================================
+   Tablet (768px - 1439px)
+   ========================================================================== */
+
+@media screen and (width >= 768px) and (width <= 1439px) {
+  /* header.css */
+  .header {
+    padding: 20px 32px;
+  }
+
+  .burger-btn,
+  .mobile-menu {
+    display: none;
+  }
+
+  /* favorites.css */
+  .favorites-grid {
+    grid-template-columns: repeat(auto-fill, minmax(335px, 1fr));
+  }
+
+  .favorites-aside-bottom {
+    flex-direction: row;
+  }
+}
+
+/* ==========================================================================
+   Medium Desktop (width <= 920px)
+   ========================================================================== */
+
+@media (width <= 920px) {
+  /* categories.css */
+  .exercises-grid {
+    grid-template-columns: 1fr;
+    max-width: 100%;
+    margin: 0 auto;
+    min-height: 400px; /* Reduced min-height for tablet (1 col × ~3 cards) */
+  }
+
+  .categories-grid {
+    grid-template-columns: repeat(2, 290px);
+    min-height: 759px; /* Tablet (2 cols × 3 rows: (242px × 3) + (15px × 2)) */
+  }
+
+  /* exercises.css */
+  .exercises-grid {
+    min-height: 450px; /* Mobile (1 col × ~3 cards: 141px × 3 + gaps) */
+  }
+}
+
+/* ==========================================================================
+   Large Desktop (width <= 1135px)
+   ========================================================================== */
+
+@media (width <= 1135px) {
+  /* layout.css */
+  .main-content {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    grid-row: 2;
+  }
+}
+
+/* ==========================================================================
+   Large Desktop Footer (width <= 1200px)
+   ========================================================================== */
+
+@media (width <= 1200px) {
+  /* footer.css */
+  .footer-grid {
+    grid-template-columns: 1fr;
+    max-width: 100%;
+    gap: 40px;
+  }
+}
+
+/* ==========================================================================
+   Hero Right Section (width <= 1279px)
+   ========================================================================== */
+
+@media (width <= 1279px) {
+  /* hero.css */
+  .hero-right {
+    display: none;
+  }
+}
+
+/* ==========================================================================
+   Desktop Header (width >= 1440px)
+   ========================================================================== */
+
+@media screen and (width >= 1440px) {
+  /* header.css */
+  .burger-btn,
+  .mobile-menu {
+    display: none;
+  }
+
+  /* favorites.css */
+  .favorites-content-wrapper {
+    display: grid;
+    grid-template-columns: 490px 1fr; /* Fixed width for left column based on design estimate */
+    gap: 32px;
+    align-items: flex-start;
+  }
+
+  .favorites-aside {
+    position: sticky; /* Optional, if we want it sticky */
+    top: 20px;
+  }
+
+  .favorites-aside-bottom {
+    flex-direction: row;
+    gap: 20px;
+  }
+
+  /* Make sidebar image and info card fit in the row below quote */
+  .favorites-aside-bottom > * {
+    flex: 1;
+  }
+
+  .favorites-list-container {
+    padding-top: 0;
+  }
+
+  .favorites-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    gap: 32px 16px;
+  }
+}

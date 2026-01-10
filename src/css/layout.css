@@ -17,14 +17,3 @@
 .content-area {
   flex: 1;
 }
-
-/* Responsive */
-@media (width <= 1200px) {
-  .main-content {
-    grid-template-columns: 1fr;
-  }
-
-  .sidebar {
-    grid-row: 2;
-  }
-}

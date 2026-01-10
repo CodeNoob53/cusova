@@ -105,30 +105,3 @@
   top: 0;
   left: 0;
 }
-
-/* Responsive */
-@media (width <= 1279px) {
-  .hero-right {
-    display: none;
-  }
-}
-
-@media (width <= 768px) {
-  .hero {
-    flex-direction: column;
-  }
-
-  .hero-title {
-    font-size: 48px;
-    line-height: 52px;
-  }
-
-  .hero-image-wrapper {
-    height: 600px;
-    border-radius: 30px;
-  }
-
-  .hero-img-large {
-    object-position: 50% 50%;
-  }
-}

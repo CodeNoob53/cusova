@@ -149,22 +149,3 @@
 .exercise-search-btn svg {
   stroke: #242424;
 }
-
-/* Responsive */
-@media (width <= 768px) {
-  .filters-header {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .filters-controls {
-    width: 100%;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 16px;
-  }
-
-  .exercise-search-form {
-    width: 100%;
-  }
-}

@@ -224,38 +224,3 @@
 .mobile-socials li {
   display: flex;
 }
-
-/* Responsive Styles */
-@media screen and (width <= 767px) {
-  .header {
-    grid-template-columns: 1fr auto;
-    padding: 16px 20px;
-  }
-
-  .navigation,
-  .socials {
-    display: none;
-  }
-
-  .burger-btn {
-    display: block;
-  }
-}
-
-@media screen and (width >= 768px) and (width <= 1439px) {
-  .header {
-    padding: 20px 32px;
-  }
-
-  .burger-btn,
-  .mobile-menu {
-    display: none;
-  }
-}
-
-@media screen and (width >= 1440px) {
-  .burger-btn,
-  .mobile-menu {
-    display: none;
-  }
-}

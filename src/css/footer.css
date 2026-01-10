@@ -141,12 +141,3 @@
   letter-spacing: -0.28px;
   color: var(--color-footer-text);
 }
-
-/* Responsive */
-@media (width <= 1200px) {
-  .footer-grid {
-    grid-template-columns: 1fr;
-    max-width: 100%;
-    gap: 40px;
-  }
-}

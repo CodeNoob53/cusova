@@ -11,13 +11,6 @@
   margin: 0;
 }
 
-/* Mobile responsive min-height for exercises */
-@media (width <= 920px) {
-  .exercises-grid {
-    min-height: 450px; /* Mobile (1 col × ~3 cards: 141px × 3 + gaps) */
-  }
-}
-
 .exercise-card {
   background: #fff;
   border-radius: 15px;
