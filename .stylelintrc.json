@@ -16,6 +16,13 @@
         "camelCaseSvgKeywords": true,
         "ignoreKeywords": ["BlinkMacSystemFont"]
       }
+    ],
+    "font-family-name-quotes": "always-where-recommended",
+    "declaration-block-no-duplicate-properties": [
+      true,
+      {
+        "ignore": ["consecutive-duplicates-with-different-values"]
+      }
     ]
   }
 }
