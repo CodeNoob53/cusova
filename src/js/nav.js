@@ -22,7 +22,7 @@ export function setActiveNav(route) {
 // Setup navigation click handlers for SPA routing using event delegation
 function setupNavigation() {
   // Desktop navigation
-  const nav = document.querySelector('.nav');
+  const nav = document.querySelector('.navigation');
   if (nav) {
     nav.addEventListener('click', e => {
       const link = e.target.closest('.nav-link');
@@ -38,7 +38,7 @@ function setupNavigation() {
   }
 
   // Mobile navigation
-  const mobileNav = document.querySelector('.mobile-nav');
+  const mobileNav = document.querySelector('.mobile-navigation');
   if (mobileNav) {
     mobileNav.addEventListener('click', e => {
       const link = e.target.closest('.mobile-nav-link');

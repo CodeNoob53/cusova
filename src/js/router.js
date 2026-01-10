@@ -13,7 +13,9 @@ import infoCardHtml from '../partials/info-card.html?raw';
 // Initialize router with base path for GitHub Pages
 // In production (GitHub Pages), the base is '/cusova/', in dev it's '/'
 const basePath = import.meta.env.BASE_URL || '/';
-const router = new Navigo(basePath, { hash: false });
+// Ensure basePath is always a string
+const basePathStr = String(basePath);
+const router = new Navigo(basePathStr, { hash: false });
 
 // Map of view names to their raw HTML content
 const routes = {
@@ -42,20 +44,18 @@ function processLoadTags(html) {
   });
 }
 
-// Fix image paths to include base path for production
-function fixImagePaths(html) {
-  // Only fix paths in production (when basePath is not '/')
-  if (basePath === '/') return html;
+// Fix public folder image paths by adding base URL
+// Public folder assets are NOT processed by Vite, so we need to manually add base path
+function fixPublicAssetPaths(html) {
+  // In dev mode (base = '/'), no changes needed
+  if (basePathStr === '/') return html;
 
-  // Fix src="/img/..." to src="/cusova/img/..."
-  html = html.replace(/src="\/img\//g, `src="${basePath}img/`);
+  // Fix src="/img/..." to include base path
+  html = html.replace(/src="\/img\//g, `src="${basePathStr}img/`);
 
-  // Fix srcset="/img/..." to srcset="/cusova/img/..."
-  html = html.replace(/srcset="\s*\/img\//g, `srcset="${basePath}img/`);
-
-  // Fix srcset with multiple sources like: /img/avif/mobile.avif 1x, /img/avif/mobile@2x.avif 2x
-  html = html.replace(/srcset="([^"]*)"/g, (match, content) => {
-    const fixed = content.replace(/\/img\//g, `${basePath}img/`);
+  // Fix srcset="/img/..." in all formats (single line and multiline)
+  html = html.replace(/srcset="([^"]*)"/gs, (match, content) => {
+    const fixed = content.replace(/\/img\//g, `${basePathStr}img/`);
     return `srcset="${fixed}"`;
   });
 
@@ -76,8 +76,8 @@ async function loadView(viewName) {
   // Process <load> tags synchronously
   let processedHtml = processLoadTags(html);
 
-  // Fix image paths for production
-  processedHtml = fixImagePaths(processedHtml);
+  // Fix public folder asset paths (images in /img/)
+  processedHtml = fixPublicAssetPaths(processedHtml);
 
   app.innerHTML = processedHtml;
 }
