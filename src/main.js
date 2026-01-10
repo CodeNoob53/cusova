@@ -3,20 +3,28 @@ import { initFavoritesPage } from './js/favorites.js';
 import { subscribe } from './js/api.js';
 import './js/nav.js';
 
-// Simple page navigation
-function showPage(pageName) {
+// Hash-based routing
+function getCurrentRoute() {
+  const hash = window.location.hash.slice(1); // Remove #
+  return hash || 'home'; // Default to home
+}
+
+// Navigate to page based on hash
+function navigateToRoute(route) {
   const homePage = document.getElementById('home-page');
   const favoritesPage = document.getElementById('favorites-page');
 
-  if (pageName === 'home') {
+  if (route === 'home') {
     homePage?.classList.remove('hidden');
     favoritesPage?.classList.add('hidden');
     initHomePage();
-  } else if (pageName === 'favorites') {
+  } else if (route === 'favorites') {
     homePage?.classList.add('hidden');
     favoritesPage?.classList.remove('hidden');
     initFavoritesPage();
   }
+
+  setActiveNav(route);
 }
 
 // Set active navigation link
@@ -36,17 +44,19 @@ function setActiveNav(route) {
   }
 }
 
+// Handle hash changes (browser back/forward buttons)
+function handleHashChange() {
+  const route = getCurrentRoute();
+  navigateToRoute(route);
+}
+
 // Setup navigation handlers
 function setupNavigation() {
-  // Desktop navigation
-  document.querySelectorAll('[data-page]').forEach(link => {
-    link.addEventListener('click', e => {
-      e.preventDefault();
-      const page = link.dataset.page;
-      showPage(page);
-      setActiveNav(page);
-    });
-  });
+  // Listen for hash changes
+  window.addEventListener('hashchange', handleHashChange);
+
+  // Handle initial route
+  handleHashChange();
 }
 
 // Setup subscription form
@@ -71,5 +81,4 @@ function setupSubscription() {
 document.addEventListener('DOMContentLoaded', () => {
   setupNavigation();
   setupSubscription();
-  showPage('home'); // Show home page by default
 });

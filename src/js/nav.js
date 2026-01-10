@@ -16,6 +16,14 @@ function setupBurgerMenu() {
     }
   });
 
+  // Close on navigation link click
+  const mobileNavLinks = mobileMenu.querySelectorAll('.mobile-nav-link');
+  mobileNavLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      closeMobileMenu();
+    });
+  });
+
   // Close on Escape key
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape' && mobileMenu.classList.contains('is-open')) {

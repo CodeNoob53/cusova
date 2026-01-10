@@ -46,13 +46,13 @@ export const renderPagination = async (currentPage, totalPages, containerId = 'p
   // Generate pages array with ellipsis logic
   const pages = generatePageNumbers(currentPage, totalPages);
 
-  // Build pages HTML
+  // Build pages HTML with ul/li structure
   const pagesHtml = pages
     .map(page => {
       if (page === '...') {
-        return `<span class="pagination-dots">...</span>`;
+        return `<li class="pagination-item"><span class="pagination-dots">...</span></li>`;
       }
-      return `<button class="pagination-number ${page === currentPage ? 'pagination-number--active' : ''}" data-page="${page}" ${page === currentPage ? 'disabled' : ''}>${page}</button>`;
+      return `<li class="pagination-item"><button class="pagination-number ${page === currentPage ? 'pagination-number--active' : ''}" data-page="${page}" ${page === currentPage ? 'disabled' : ''}>${page}</button></li>`;
     })
     .join('');
 
