@@ -1,60 +1,3 @@
-import { router } from './router.js';
-
-// Set active navigation based on current route
-export function setActiveNav(route) {
-  const navHome = document.getElementById('nav-home');
-  const navFavorites = document.getElementById('nav-favorites');
-
-  if (!navHome || !navFavorites) return;
-
-  // Remove all active classes
-  navHome.classList.remove('active');
-  navFavorites.classList.remove('active');
-
-  // Add active class based on current route
-  if (route === '/favorites') {
-    navFavorites.classList.add('active');
-  } else {
-    navHome.classList.add('active');
-  }
-}
-
-// Setup navigation click handlers for SPA routing using event delegation
-function setupNavigation() {
-  // Desktop navigation
-  const nav = document.querySelector('.navigation');
-  if (nav) {
-    nav.addEventListener('click', e => {
-      const link = e.target.closest('.nav-link');
-      if (!link) return;
-
-      e.preventDefault();
-      const route = link.dataset.route;
-      if (route) {
-        router.navigate(route);
-        setActiveNav(route);
-      }
-    });
-  }
-
-  // Mobile navigation
-  const mobileNav = document.querySelector('.mobile-navigation');
-  if (mobileNav) {
-    mobileNav.addEventListener('click', e => {
-      const link = e.target.closest('.mobile-nav-link');
-      if (!link) return;
-
-      e.preventDefault();
-      const route = link.dataset.route;
-      if (route) {
-        router.navigate(route);
-        setActiveNav(route);
-        closeMobileMenu();
-      }
-    });
-  }
-}
-
 // Burger menu functionality
 function setupBurgerMenu() {
   const burgerBtn = document.getElementById('burger-btn');
@@ -84,12 +27,12 @@ function setupBurgerMenu() {
 function openMobileMenu() {
   const mobileMenu = document.getElementById('mobile-menu');
   const burgerBtn = document.getElementById('burger-btn');
-  
+
   if (mobileMenu) {
     mobileMenu.classList.add('is-open');
     document.body.style.overflow = 'hidden';
   }
-  
+
   if (burgerBtn) {
     burgerBtn.setAttribute('aria-expanded', 'true');
   }
@@ -98,12 +41,12 @@ function openMobileMenu() {
 function closeMobileMenu() {
   const mobileMenu = document.getElementById('mobile-menu');
   const burgerBtn = document.getElementById('burger-btn');
-  
+
   if (mobileMenu) {
     mobileMenu.classList.remove('is-open');
     document.body.style.overflow = '';
   }
-  
+
   if (burgerBtn) {
     burgerBtn.setAttribute('aria-expanded', 'false');
   }
@@ -111,6 +54,5 @@ function closeMobileMenu() {
 
 // Initialize navigation
 document.addEventListener('DOMContentLoaded', () => {
-  setupNavigation();
   setupBurgerMenu();
 });

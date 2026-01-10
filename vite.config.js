@@ -6,24 +6,24 @@ import SortCss from 'postcss-sort-media-queries';
 
 export default defineConfig(({ command }) => {
   return {
+    base: command === 'serve' ? '/' : '/cusova/',
+
     define: {
       [command === 'serve' ? 'global' : '_global']: {},
     },
+
     root: 'src',
+
     build: {
       sourcemap: true,
       rollupOptions: {
         input: glob.sync('./src/*.html'),
         output: {
           manualChunks(id) {
-            if (id.includes('node_modules')) {
-              return 'vendor';
-            }
+            if (id.includes('node_modules')) return 'vendor';
           },
           entryFileNames: chunkInfo => {
-            if (chunkInfo.name === 'commonHelpers') {
-              return 'commonHelpers.js';
-            }
+            if (chunkInfo.name === 'commonHelpers') return 'commonHelpers.js';
             return '[name].js';
           },
           assetFileNames: assetInfo => {
@@ -37,12 +37,11 @@ export default defineConfig(({ command }) => {
       outDir: '../dist',
       emptyOutDir: true,
     },
+
     plugins: [
       injectHTML(),
       FullReload(['./src/**/**.html']),
-      SortCss({
-        sort: 'mobile-first',
-      }),
+      SortCss({ sort: 'mobile-first' }),
     ],
   };
 });
