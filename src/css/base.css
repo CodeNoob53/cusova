@@ -34,7 +34,7 @@ button {
   cursor: pointer;
 }
 
-.container {
+.wrapper {
   max-width: 1440px;
   margin: 0 auto;
   padding: 0;
@@ -45,7 +45,7 @@ button {
 }
 
 .main {
-  padding: 0 32px;
+  padding: 0 20px;
   flex-grow: 1;
 }
 
