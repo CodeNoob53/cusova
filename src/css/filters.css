@@ -20,7 +20,7 @@
 }
 
 .section-title .category-name {
-  color: rgb(36, 36, 36, 0.5);
+  color: rgb(36, 36, 36, 0.65);
 }
 
 .filters-controls {
@@ -86,7 +86,7 @@
 }
 
 .exercise-search-input::placeholder {
-  color: rgb(36, 36, 36, 0.5);
+  color: rgb(36, 36, 36, 0.65);
 }
 
 .exercise-search-input:focus {

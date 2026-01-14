@@ -65,7 +65,7 @@
 }
 
 .pagination-btn:disabled .pagination-icon {
-  color: rgb(36, 36, 36, 0.5);
+  color: rgb(36, 36, 36, 0.65);
 }
 
 /* Page number buttons */
@@ -76,7 +76,7 @@
   font-size: 24px;
   line-height: 1;
   letter-spacing: 0.04em;
-  color: rgba(36, 36, 36, 0.5);
+  color: rgba(36, 36, 36, 0.65);
   cursor: pointer;
   transition: var(--transition);
   background: none;
@@ -107,7 +107,7 @@
 /* Dots (ellipsis) */
 .pagination-dots {
   cursor: default;
-  color: rgba(36, 36, 36, 0.3);
+  color: rgba(36, 36, 36, 0.5);
   pointer-events: none;
   min-width: 24px;
   font-weight: 700;
