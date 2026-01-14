@@ -20,136 +20,24 @@
 }
 
 /* Favorites Grid */
+/* Favorites Grid - now uses same layout as exercises */
 .favorites-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 16px;
-}
-
-/* Favorite Card */
-.favorite-card {
-  background: var(--color-light);
-  border: 1px solid rgb(36, 36, 36, 0.1);
-  border-radius: 12px;
-  padding: 16px;
-  transition: var(--transition);
-}
-
-.favorite-card:hover {
-  box-shadow: 0 4px 16px rgb(0, 0, 0, 0.1);
-}
-
-.favorite-card-header {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 24px;
-}
-
-.favorite-workout-badge {
-  background: rgb(36, 36, 36, 0.05);
-  border-radius: 4px;
-  padding: 4px 8px;
-  font-size: 12px;
-  font-weight: 500;
-  color: rgb(36, 36, 36, 0.4);
-  text-transform: uppercase;
-}
-
-.favorite-delete-btn {
-  background: none;
-  border: none;
-  width: 18px;
-  height: 18px;
+  flex-direction: column;
+  gap: 20px;
+  list-style: none;
   padding: 0;
-  color: var(--color-black);
-  cursor: pointer;
-  transition: var(--transition);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  margin: 0;
 }
 
-.favorite-delete-btn:hover {
-  color: #e74c3c;
+@media screen and (min-width: 1440px) {
+  .favorites-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 442px);
+  }
 }
 
-.favorite-card-body {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 16px;
-}
-
-.favorite-card-icon {
-  width: 24px;
-  height: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.favorite-start-btn {
-  background: var(--color-light);
-  border: 1px solid var(--color-black);
-  border-radius: 30px;
-  padding: 6px 16px;
-  font-size: 14px;
-  font-weight: 400;
-  color: var(--color-black);
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  transition: var(--transition);
-}
-
-.favorite-start-btn:hover {
-  background: var(--color-black);
-  color: var(--color-light);
-}
-
-.favorite-start-btn svg {
-  width: 16px;
-  height: 16px;
-}
-
-.favorite-card-content {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.favorite-card-title {
-  font-size: 20px;
-  font-weight: 400;
-  line-height: 24px;
-  color: var(--color-black);
-  margin-bottom: 4px;
-}
-
-.favorite-card-meta {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.meta-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 14px;
-  line-height: 18px;
-}
-
-.meta-label {
-  color: rgb(36, 36, 36, 0.4);
-  font-weight: 400;
-}
-
-.meta-value {
-  color: var(--color-black);
-  font-weight: 400;
-}
+/* Redundant Card Styles Removed - now handled by exercises.css */
 
 /* Empty State */
 .favorites-empty {

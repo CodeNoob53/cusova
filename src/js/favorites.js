@@ -93,7 +93,7 @@ async function renderFavorites() {
     return;
   }
 
-  const cardTemplate = await loadTemplate('favorite-card');
+  const cardTemplate = await loadTemplate('exercise-card');
 
   const cardsHtml = favorites
     .map(exercise => {
@@ -101,8 +101,12 @@ async function renderFavorites() {
         id: exercise._id,
         name: exercise.name,
         burnedCalories: exercise.burnedCalories || 0,
+        time: exercise.time || 0,
         bodyPart: exercise.bodyPart || 'N/A',
         target: exercise.target || 'N/A',
+        rating: exercise.rating || 0,
+        ratingFormatted: exercise.rating ? exercise.rating.toFixed(1) : '0.0',
+        cardClass: 'is-favorite',
       });
     })
     .join('');

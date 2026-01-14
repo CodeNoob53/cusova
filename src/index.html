@@ -4,16 +4,24 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Your Energy</title>
+
+    <!-- Preload critical assets -->
+    <link rel="preload" href="./fonts/DMSans-Regular.ttf" as="font" type="font/ttf" crossorigin />
+    <link rel="preload" href="./css/main.css" as="style" />
+    <link rel="preload" href="./main.js" as="script" crossorigin />
+
+    <!-- DNS prefetch for API -->
+    <link rel="dns-prefetch" href="https://your-energy.b.goit.study" />
+    <link rel="preconnect" href="https://your-energy.b.goit.study" crossorigin />
+
     <script type="module" src="./main.js"></script>
+    <link rel="stylesheet" href="./css/main.css" />
 
     <!-- Favicons -->
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <!-- Main Styles - load async to not block render -->
-    <link rel="preload" href="./css/main.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="./css/main.css"></noscript>
   </head>
   <body>
     <div class="wrapper">

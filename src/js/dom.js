@@ -1,7 +1,6 @@
 // Import templates as raw strings
 import exerciseCardTemplate from '../partials/exercise-card.html?raw';
 import categoryCardTemplate from '../partials/category-card.html?raw';
-import favoriteCardTemplate from '../partials/favorite-card.html?raw';
 import favoritesEmptyTemplate from '../partials/favorites-empty.html?raw';
 import paginationTemplate from '../partials/pagination.html?raw';
 
@@ -9,7 +8,6 @@ import paginationTemplate from '../partials/pagination.html?raw';
 const templates = {
   'exercise-card': exerciseCardTemplate,
   'category-card': categoryCardTemplate,
-  'favorite-card': favoriteCardTemplate,
   'favorites-empty': favoritesEmptyTemplate,
   'pagination': paginationTemplate,
 };
@@ -72,6 +70,7 @@ export const renderExercises = async (exercises, containerId) => {
         id: exercise._id,
         rating: exercise.rating || 0,
         ratingFormatted: exercise.rating ? exercise.rating.toFixed(1) : '0.0',
+        cardClass: '',
         name: exercise.name,
         burnedCalories: exercise.burnedCalories || 0,
         time: exercise.time || 0,
