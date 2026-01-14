@@ -5,39 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Your Energy</title>
 
+    <!-- Preload critical assets -->
+    <link rel="preload" href="/cusova/assets/DMSans-Regular-Dvt-avFb.ttf" as="font" type="font/ttf" crossorigin />
+    <link rel="preload" href="data:text/javascript;base64,aW1wb3J0IHsgaW5pdEhvbWVQYWdlIH0gZnJvbSAnLi9qcy9ob21lLmpzJzsKaW1wb3J0IHsgaW5pdEZhdm9yaXRlc1BhZ2UgfSBmcm9tICcuL2pzL2Zhdm9yaXRlcy5qcyc7CmltcG9ydCB7IHN1YnNjcmliZSB9IGZyb20gJy4vanMvYXBpLmpzJzsKaW1wb3J0ICcuL2pzL25hdi5qcyc7CgovLyBIYXNoLWJhc2VkIHJvdXRpbmcKZnVuY3Rpb24gZ2V0Q3VycmVudFJvdXRlKCkgewogIGNvbnN0IGhhc2ggPSB3aW5kb3cubG9jYXRpb24uaGFzaC5zbGljZSgxKTsgLy8gUmVtb3ZlICMKICByZXR1cm4gaGFzaCB8fCAnaG9tZSc7IC8vIERlZmF1bHQgdG8gaG9tZQp9CgovLyBOYXZpZ2F0ZSB0byBwYWdlIGJhc2VkIG9uIGhhc2gKZnVuY3Rpb24gbmF2aWdhdGVUb1JvdXRlKHJvdXRlKSB7CiAgY29uc3QgaG9tZVBhZ2UgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnaG9tZS1wYWdlJyk7CiAgY29uc3QgZmF2b3JpdGVzUGFnZSA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdmYXZvcml0ZXMtcGFnZScpOwoKICBpZiAocm91dGUgPT09ICdob21lJykgewogICAgaG9tZVBhZ2U/LmNsYXNzTGlzdC5yZW1vdmUoJ2hpZGRlbicpOwogICAgZmF2b3JpdGVzUGFnZT8uY2xhc3NMaXN0LmFkZCgnaGlkZGVuJyk7CiAgICBpbml0SG9tZVBhZ2UoKTsKICB9IGVsc2UgaWYgKHJvdXRlID09PSAnZmF2b3JpdGVzJykgewogICAgaG9tZVBhZ2U/LmNsYXNzTGlzdC5hZGQoJ2hpZGRlbicpOwogICAgZmF2b3JpdGVzUGFnZT8uY2xhc3NMaXN0LnJlbW92ZSgnaGlkZGVuJyk7CiAgICBpbml0RmF2b3JpdGVzUGFnZSgpOwogIH0KCiAgc2V0QWN0aXZlTmF2KHJvdXRlKTsKfQoKLy8gU2V0IGFjdGl2ZSBuYXZpZ2F0aW9uIGxpbmsKZnVuY3Rpb24gc2V0QWN0aXZlTmF2KHJvdXRlKSB7CiAgY29uc3QgbmF2SG9tZSA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCduYXYtaG9tZScpOwogIGNvbnN0IG5hdkZhdm9yaXRlcyA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCduYXYtZmF2b3JpdGVzJyk7CgogIGlmICghbmF2SG9tZSB8fCAhbmF2RmF2b3JpdGVzKSByZXR1cm47CgogIG5hdkhvbWUuY2xhc3NMaXN0LnJlbW92ZSgnYWN0aXZlJyk7CiAgbmF2RmF2b3JpdGVzLmNsYXNzTGlzdC5yZW1vdmUoJ2FjdGl2ZScpOwoKICBpZiAocm91dGUgPT09ICdmYXZvcml0ZXMnKSB7CiAgICBuYXZGYXZvcml0ZXMuY2xhc3NMaXN0LmFkZCgnYWN0aXZlJyk7CiAgfSBlbHNlIHsKICAgIG5hdkhvbWUuY2xhc3NMaXN0LmFkZCgnYWN0aXZlJyk7CiAgfQp9CgovLyBIYW5kbGUgaGFzaCBjaGFuZ2VzIChicm93c2VyIGJhY2svZm9yd2FyZCBidXR0b25zKQpmdW5jdGlvbiBoYW5kbGVIYXNoQ2hhbmdlKCkgewogIGNvbnN0IHJvdXRlID0gZ2V0Q3VycmVudFJvdXRlKCk7CiAgbmF2aWdhdGVUb1JvdXRlKHJvdXRlKTsKfQoKLy8gU2V0dXAgbmF2aWdhdGlvbiBoYW5kbGVycwpmdW5jdGlvbiBzZXR1cE5hdmlnYXRpb24oKSB7CiAgLy8gTGlzdGVuIGZvciBoYXNoIGNoYW5nZXMKICB3aW5kb3cuYWRkRXZlbnRMaXN0ZW5lcignaGFzaGNoYW5nZScsIGhhbmRsZUhhc2hDaGFuZ2UpOwoKICAvLyBIYW5kbGUgaW5pdGlhbCByb3V0ZQogIGhhbmRsZUhhc2hDaGFuZ2UoKTsKfQoKLy8gU2V0dXAgc3Vic2NyaXB0aW9uIGZvcm0KZnVuY3Rpb24gc2V0dXBTdWJzY3JpcHRpb24oKSB7CiAgY29uc3Qgc3ViRm9ybSA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdzdWJzY3JpcHRpb24tZm9ybScpOwogIGlmIChzdWJGb3JtKSB7CiAgICBzdWJGb3JtLmFkZEV2ZW50TGlzdGVuZXIoJ3N1Ym1pdCcsIGFzeW5jIGUgPT4gewogICAgICBlLnByZXZlbnREZWZhdWx0KCk7CiAgICAgIGNvbnN0IGVtYWlsID0gc3ViRm9ybS5lbWFpbC52YWx1ZTsKICAgICAgdHJ5IHsKICAgICAgICBhd2FpdCBzdWJzY3JpYmUoZW1haWwpOwogICAgICAgIGFsZXJ0KCdTdWNjZXNzZnVsbHkgc3Vic2NyaWJlZCEnKTsKICAgICAgICBzdWJGb3JtLnJlc2V0KCk7CiAgICAgIH0gY2F0Y2ggKGVycikgewogICAgICAgIGFsZXJ0KCdTdWJzY3JpcHRpb24gZmFpbGVkLiBQbGVhc2UgY2hlY2sgeW91ciBlbWFpbCBvciB0cnkgYWdhaW4gbGF0ZXIuJyk7CiAgICAgIH0KICAgIH0pOwogIH0KfQoKLy8gSW5pdGlhbGl6ZSBhcHAKZG9jdW1lbnQuYWRkRXZlbnRMaXN0ZW5lcignRE9NQ29udGVudExvYWRlZCcsICgpID0+IHsKICBzZXR1cE5hdmlnYXRpb24oKTsKICBzZXR1cFN1YnNjcmlwdGlvbigpOwp9KTsK" as="script" crossorigin />
+
+    <!-- DNS prefetch for API -->
+    <link rel="dns-prefetch" href="https://your-energy.b.goit.study" />
+    <link rel="preconnect" href="https://your-energy.b.goit.study" crossorigin />
+
+
     <!-- Favicons -->
     <link rel="icon" type="image/x-icon" href="/cusova/favicon.ico" />
     <link rel="icon" type="image/png" sizes="32x32" href="/cusova/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/cusova/favicon-16x16.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/cusova/apple-touch-icon.png" />
-
-    <!-- Critical inline CSS for above-the-fold content -->
-    <style>
-      /* Critical CSS - reset and base layout */
-      *,*::before,*::after{box-sizing:border-box}
-      body{margin:0;font-family:'DM Sans',sans-serif;background:#f4f4f4;min-height:100vh}
-      .container{max-width:1440px;margin:0 auto;padding:0 20px}
-
-      /* Skeleton shimmer animation */
-      .skeleton-shimmer{background:#eee;background:linear-gradient(110deg,#ececec 8%,#f5f5f5 18%,#ececec 33%);background-size:200% 100%;animation:shine 1.5s linear infinite}
-      @keyframes shine{to{background-position-x:-200%}}
-
-      /* Critical grid layout */
-      .categories-grid{display:grid;grid-template-columns:repeat(3,290px);gap:15px;justify-content:center;min-height:1013px;list-style:none;padding:0;margin:0}
-      .category-skeleton{width:100%;max-width:290px;height:242px;border-radius:12px}
-
-      /* Hide non-critical content initially */
-      .modal{display:none}
-    </style>
-
-    <!-- Main Styles - load async to not block render -->
-    <noscript></noscript>
-    <script type="module" crossorigin src="/cusova/index.js"></script>
-    <link rel="modulepreload" crossorigin href="/cusova/assets/vendor-BWC8OeqA.js">
-    <link rel="stylesheet" crossorigin href="/cusova/assets/index-n0g3flU2.css">
+    <script type="module" crossorigin src="/cusova/index-CSDr88Vp.js"></script>
+    <link rel="modulepreload" crossorigin href="/cusova/vendor-BWC8OeqA.js">
+    <link rel="stylesheet" crossorigin href="/cusova/assets/index-B6Hy1Kqn.css">
   </head>
   <body>
-    <div class="container">
+    <div class="wrapper">
       <!-- SVG Sprite for Icons -->
 <svg style="display: none" fill="none" xmlns="http://www.w3.org/2000/svg">
   <!-- logo -->
@@ -118,6 +105,9 @@
 
   <symbol id="icon-double-arrow-right" viewBox="0 0 13 12">
     <path d="M11.071 6.426a.833.833 0 0 0 0-1.184L7.246 1.426A.833.833 0 1 1 8.421.242l3.825 3.825a2.5 2.5 0 0 1 0 3.534l-3.825 3.825a.833.833 0 0 1-1.175-1.184zm-7 0a.833.833 0 0 0 0-1.184L.246 1.426A.833.833 0 1 1 1.421.242l3.825 3.825a2.5 2.5 0 0 1 0 3.534l-3.825 3.825a.833.833 0 0 1-1.175-1.184z" fill="currentColor"/>
+  </symbol>
+  <symbol id="icon-trash" viewBox="0 0 20 20" fill="none">
+    <path d="M13.333 5v-.667c0-.933 0-1.4-.181-1.756a1.67 1.67 0 0 0-.729-.729c-.356-.181-.823-.181-1.756-.181H9.333c-.933 0-1.4 0-1.756.181-.314.16-.569.415-.729.729-.181.356-.181.823-.181 1.756V5m1.666 4.583v4.167m3.334-4.167v4.167M2.5 5h15m-1.667 0v9.333c0 1.4 0 2.1-.272 2.635a2.5 2.5 0 0 1-1.093 1.093c-.534.272-1.235.272-2.635.272H8.167c-1.4 0-2.1 0-2.635-.272a2.5 2.5 0 0 1-1.093-1.093c-.272-.535-.272-1.235-.272-2.635V5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
   </symbol>
 </svg>
 
@@ -392,7 +382,7 @@
   <p id="quote-author" class="quote-author">Tom Brady</p>
 </div>
 
-        <div class="sidebar-image-card">
+        <div class="sidebar-image-card skeleton-shimmer">
   <picture>
     <!-- Mobile: до 767px -->
     <source
